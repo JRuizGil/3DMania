@@ -3,16 +3,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+
     public float mouseSensitivity = 2f;
-    public Transform cameraTransform;
 
-    private float rotationX = 0f;
+    private float rotationX = 90f;
 
+    public float detectionDistance = 3f;
+
+    public Transform cameraTransform;    
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         HandleMovement();
         HandleMouseLook();
         HandleExit();
+    }
+    private void FixedUpdate()
+    {
+        HandleClick();
     }
     void HandleMovement()
     {
@@ -21,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = transform.right * moveX + transform.forward * moveZ;
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
-    }
+    }    
     void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -44,9 +57,19 @@ public class PlayerController : MonoBehaviour
 #endif
         }
     }
-    void Start()
+    void HandleClick()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (Input.GetMouseButton(0)) 
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, detectionDistance))
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    interactable.OnInteract();
+                }
+            }
+        }
     }
 }
