@@ -1,55 +1,59 @@
-using System.Collections;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float Mat1;
-    public float Mat2;
-    public float Mat3;
-
     public GameObject Child;
     public Transform StartPos;
     public Transform EndPos;
-    public float moveDuration = 2f;
+    public float moveSpeed = 2f;
 
-    private bool isMoving = false;
-    private bool hasReachedEnd = false;
+    private bool isInteracting = false;
+    private float progress = 0f; 
 
-    public void OnInteract()
+    private Inventory inventory;
+
+    private void Start()
     {
-        if (!isMoving && !hasReachedEnd)
+        inventory = FindAnyObjectByType<Inventory>();
+    }
+
+    private void Update()
+    {
+        if (isInteracting && progress < 1f)
         {
-            StartCoroutine(MoveChild());
+            progress += Time.deltaTime * moveSpeed;
+            progress = Mathf.Clamp01(progress); 
+        }
+        else if (!isInteracting && progress > 0f)
+        {
+            progress -= Time.deltaTime * moveSpeed;
+            progress = Mathf.Clamp01(progress);
+        }        
+
+        Child.transform.localPosition = Vector3.Lerp(StartPos.localPosition, EndPos.localPosition, progress);
+        
+        if (progress >= 1f)
+        {
+            AddRandomValuesToInventory();
         }
     }
-    private IEnumerator MoveChild()
+    public void OnInteractStart()
     {
-        isMoving = true;
-        float elapsedTime = 0f;
-        Vector3 startLocalPos = StartPos.localPosition;
-        Vector3 endLocalPos = EndPos.localPosition;
-
-        while (elapsedTime < moveDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / moveDuration;
-            Child.transform.localPosition = Vector3.Lerp(startLocalPos, endLocalPos, t);
-            yield return null;
-        }
-
-        Child.transform.localPosition = endLocalPos;
-        isMoving = false;
-        hasReachedEnd = true;
-
-        AddRandomValues(); 
+        isInteracting = true;
     }
-    private void AddRandomValues()
+    public void OnInteractEnd()
     {
-        Mat1 += Random.Range(2, 4);
-        Mat2 += Random.Range(0, 3);
-        Mat3 += Random.Range(0, 1);
+        isInteracting = false;
+    }
+    private void AddRandomValuesToInventory()
+    {
+        if (inventory != null)
+        {
+            float mat1 = Random.Range(2, 4);
+            float mat2 = Random.Range(0, 3);
+            float mat3 = Random.Range(0, 1);
 
-        Debug.Log($"Nuevos valores - Mat1: {Mat1}, Mat2: {Mat2}, Mat3: {Mat3}");
+            inventory.AddMaterials(mat1, mat2, mat3);
+        }
     }
 }
-

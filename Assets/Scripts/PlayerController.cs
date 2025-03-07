@@ -3,14 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
     public float mouseSensitivity = 2f;
-
     private float rotationX = 90f;
-
     public float detectionDistance = 3f;
+    public Transform cameraTransform;
 
-    public Transform cameraTransform;    
+    private Interactable currentInteractable = null; 
 
     void Start()
     {
@@ -22,9 +20,6 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleMouseLook();
         HandleExit();
-    }
-    private void FixedUpdate()
-    {
         HandleClick();
     }
     void HandleMovement()
@@ -34,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = transform.right * moveX + transform.forward * moveZ;
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
-    }    
+    }
     void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -53,13 +48,13 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-                Application.Quit();
+            Application.Quit();
 #endif
         }
     }
     void HandleClick()
     {
-        if (Input.GetMouseButton(0)) 
+        if (Input.GetMouseButtonDown(0)) 
         {
             RaycastHit hit;
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, detectionDistance))
@@ -67,8 +62,17 @@ public class PlayerController : MonoBehaviour
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    interactable.OnInteract();
+                    currentInteractable = interactable; 
+                    currentInteractable.OnInteractStart();
                 }
+            }
+        }
+        if (Input.GetMouseButtonUp(0)) 
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.OnInteractEnd();
+                currentInteractable = null; 
             }
         }
     }
