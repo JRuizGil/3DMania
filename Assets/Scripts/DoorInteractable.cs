@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class DoorInteractable : MonoBehaviour
 {
     public GameObject Child;
     public Transform StartPos;
@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
 
     private bool isInteracting = false;
     private float progress = 0f; 
+    private bool isFinished = false;
 
     private Inventory inventory;
 
@@ -16,25 +17,22 @@ public class Interactable : MonoBehaviour
     {
         inventory = FindAnyObjectByType<Inventory>();
     }
-
-    private void Update()
+    private void FixedUpdate()
     {
         if (isInteracting && progress < 1f)
         {
             progress += Time.deltaTime * moveSpeed;
-            progress = Mathf.Clamp01(progress); 
-        }
-        else if (!isInteracting && progress > 0f)
-        {
-            progress -= Time.deltaTime * moveSpeed;
             progress = Mathf.Clamp01(progress);
-        }        
-
+        }
         Child.transform.localPosition = Vector3.Lerp(StartPos.localPosition, EndPos.localPosition, progress);
-        
-        if (progress >= 1f)
+                
+    }
+    private void Update()
+    {
+        if (progress == 1f && !isFinished)
         {
             AddRandomValuesToInventory();
+            isFinished = true;
         }
     }
     public void OnInteractStart()
@@ -49,9 +47,9 @@ public class Interactable : MonoBehaviour
     {
         if (inventory != null)
         {
-            float mat1 = Random.Range(2, 4);
-            float mat2 = Random.Range(0, 3);
-            float mat3 = Random.Range(0, 1);
+            float mat1 = Random.Range(1, 5);
+            float mat2 = Random.Range(1, 3);
+            float mat3 = Random.Range(1, 1);
 
             inventory.AddMaterials(mat1, mat2, mat3);
         }

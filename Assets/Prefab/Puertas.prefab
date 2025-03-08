@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2898261756886620196
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   Child: {fileID: 3177080963222436666}
   StartPos: {fileID: 5053949661666496373}
   EndPos: {fileID: 7948818704979563156}
-  moveSpeed: 2
+  moveSpeed: 0.5
 --- !u!4 &5592839218491466693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7c8b671885e62ef4dbf883331e2b9a91, type: 3}

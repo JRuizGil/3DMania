@@ -4,12 +4,12 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
-    private float rotationX = 90f;
+    private float rotationX = 0f;
     public float detectionDistance = 3f;
     public Transform cameraTransform;
 
-    private Interactable currentInteractable = null; 
-
+    private DoorInteractable currentInteractable = null; 
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         HandleMouseLook();
         HandleExit();
         HandleClick();
+        HandleClickDistance();
     }
     void HandleMovement()
     {
@@ -54,26 +55,53 @@ public class PlayerController : MonoBehaviour
     }
     void HandleClick()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButton(0)) 
         {
             RaycastHit hit;
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, detectionDistance))
             {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                DoorInteractable interactable = hit.collider.GetComponent<DoorInteractable>();
+
                 if (interactable != null)
                 {
-                    currentInteractable = interactable; 
-                    currentInteractable.OnInteractStart();
+                    if (currentInteractable == null)
+                    {                        
+                        currentInteractable = interactable;
+                        currentInteractable.OnInteractStart();
+                    }
+                }
+                else if (currentInteractable != null)
+                {                    
+                    currentInteractable.OnInteractEnd();
+                    currentInteractable = null;
                 }
             }
-        }
-        if (Input.GetMouseButtonUp(0)) 
-        {
-            if (currentInteractable != null)
+            else if (currentInteractable != null) 
             {
                 currentInteractable.OnInteractEnd();
-                currentInteractable = null; 
+                currentInteractable = null;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0) && currentInteractable != null)
+        {
+            currentInteractable.OnInteractEnd();
+            currentInteractable = null;
+        }
+    }
+
+
+    private void HandleClickDistance()
+    {
+        if (currentInteractable != null)
+        {
+            float distance = Vector3.Distance(transform.position, currentInteractable.transform.position);
+            if (distance > detectionDistance)
+            {
+                currentInteractable.OnInteractEnd();
+                currentInteractable = null;
             }
         }
     }
+    
 }
