@@ -89,8 +89,6 @@ public class PlayerController : MonoBehaviour
             currentInteractable = null;
         }
     }
-
-
     private void HandleClickDistance()
     {
         if (currentInteractable != null)
