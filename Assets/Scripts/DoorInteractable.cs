@@ -6,17 +6,21 @@ public class DoorInteractable : MonoBehaviour
     public Transform StartPos;
     public Transform EndPos;
     public float moveSpeed = 2f;
+    public Transform player;
+    public Transform playerTargetPosition;
 
     private bool isInteracting = false;
-    private float progress = 0f; 
+    private float progress = 0f;
     private bool isFinished = false;
-
     private Inventory inventory;
+    private PlayerController PlayerController;
 
     private void Start()
     {
         inventory = FindAnyObjectByType<Inventory>();
+        PlayerController = player.GetComponent<PlayerController>();
     }
+
     private void FixedUpdate()
     {
         if (isInteracting && progress < 1f)
@@ -25,24 +29,50 @@ public class DoorInteractable : MonoBehaviour
             progress = Mathf.Clamp01(progress);
         }
         Child.transform.localPosition = Vector3.Lerp(StartPos.localPosition, EndPos.localPosition, progress);
-                
     }
+
     private void Update()
     {
         if (progress == 1f && !isFinished)
         {
             AddRandomValuesToInventory();
             isFinished = true;
+            //ReleasePlayer();
         }
     }
+
     public void OnInteractStart()
     {
-        isInteracting = true;
+        //MovePlayerToDoor();
     }
-    public void OnInteractEnd()
-    {
-        isInteracting = false;
-    }
+
+    //private void MovePlayerToDoor()
+    //{
+    //    if (PlayerController != null)
+    //    {
+    //        PlayerController.MoveToPosition(playerTargetPosition.position, () => {
+    //            FreezePlayer();
+    //            isInteracting = true;
+    //        });
+    //    }
+    //}
+
+    //private void FreezePlayer()
+    //{
+    //    if (PlayerController != null)
+    //    {
+    //        PlayerController.SetFrozen(true);
+    //    }
+    //}
+
+    //private void ReleasePlayer()
+    //{
+    //    if (PlayerController != null)
+    //    {
+    //        PlayerController.SetFrozen(false);
+    //    }
+    //}
+
     private void AddRandomValuesToInventory()
     {
         if (inventory != null)

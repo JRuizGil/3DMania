@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        Disply.text = $"Mat1: {Mat1}\nMat2: {Mat2}\nMat3: {Mat3}";
+        Disply.text = $"Mat1: {Mat1} |Mat2: {Mat2} |Mat3: {Mat3}";
     }
     public void AddMaterials(float mat1, float mat2, float mat3)
     {
