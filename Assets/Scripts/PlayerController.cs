@@ -101,17 +101,17 @@ public class PlayerController : MonoBehaviour
         HandleClick();
     }
             
-    void HandleExit()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
-    }
+//    void HandleExit()
+//    {
+//        if (Input.GetKeyDown(KeyCode.Escape))
+//        {
+//#if UNITY_EDITOR
+//            UnityEditor.EditorApplication.isPlaying = false;
+//#else
+//            Application.Quit();
+//#endif
+//        }
+//    }
     void HandleClick()
     {
         if (Input.GetMouseButtonDown(0))
