@@ -33,7 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17, y: 1, z: 19}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 737303404706819359}
   m_Father: {fileID: 0}
@@ -153,10 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bef662237284ca4bb52379c1437493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   clickEffect: {fileID: 1723118237732535431, guid: 42152230f2103e042ad40cc2740f926c, type: 3}
   clickableLayers:
     serializedVersion: 2
     m_Bits: 8
+  currentInteractable: {fileID: 0}
   cameraTransform: {fileID: 1175617602885576809, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
 --- !u!195 &6757548466675187095
 NavMeshAgent:
@@ -208,8 +210,8 @@ Transform:
   m_GameObject: {fileID: 4595331059629435334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.551, z: 0.39}
-  m_LocalScale: {x: 0.61993, y: 0.2666753, z: 0.61993}
+  m_LocalPosition: {x: 0, y: 0.983, z: 0.198}
+  m_LocalScale: {x: 0.35143834, y: 0.15117823, z: 0.35143834}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 999436870654048141}

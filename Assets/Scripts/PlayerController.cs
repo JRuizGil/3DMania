@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     const string IDLE = "Idle";
 
     CustomActions input;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     Animator animator;
 
     [Header("Movement")]
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     float lookRotationSpeed = 8f;
 
-    private DoorInteractable currentInteractable;
+    public DoorInteractable currentInteractable;
 
     public Transform cameraTransform;
 
@@ -100,19 +100,19 @@ public class PlayerController : MonoBehaviour
         FaceTarget();
         HandleClick();
     }
-            
-//    void HandleExit()
-//    {
-//        if (Input.GetKeyDown(KeyCode.Escape))
-//        {
-//#if UNITY_EDITOR
-//            UnityEditor.EditorApplication.isPlaying = false;
-//#else
-//            Application.Quit();
-//#endif
-//        }
-//    }
-    void HandleClick()
+
+    //    void HandleExit()
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Escape))
+    //        {
+    //#if UNITY_EDITOR
+    //            UnityEditor.EditorApplication.isPlaying = false;
+    //#else
+    //            Application.Quit();
+    //#endif
+    //        }
+    //    }
+    public void HandleClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -123,15 +123,18 @@ public class PlayerController : MonoBehaviour
             {
                 DoorInteractable interactable = hit.collider.GetComponent<DoorInteractable>();
 
-                if (interactable != null)  
+                if (interactable != null)
                 {
+                    // Actualizar el interactuable actual antes de iniciar la interacción
+                    currentInteractable = interactable;
                     interactable.OnInteractStart();
                 }
                 else
                 {
-                    return;
+                    currentInteractable = null;
                 }
             }
         }
     }
+
 }

@@ -48,7 +48,13 @@ public class DoorInteractable : MonoBehaviour
         {
             CancelCurrentMovement(); // Cancelar el movimiento anterior
             Debug.Log("IsMoving true");
+
+            // Detener y desactivar el NavMeshAgent antes de moverse manualmente
             controller.StopNavMeshAgent();
+
+            // Marcar el interactable actual en el controlador
+            controller.currentInteractable = this;
+
             isMoving = true;
         }
         else
@@ -56,6 +62,8 @@ public class DoorInteractable : MonoBehaviour
             Debug.Log("El jugador ya está en la posición, no se puede interactuar de nuevo.");
         }
     }
+
+
 
     private void CancelCurrentMovement()
     {
@@ -79,14 +87,22 @@ public class DoorInteractable : MonoBehaviour
 
     void PlayerMove()
     {
+        // Si el jugador ha comenzado a moverse a otra posición usando NavMesh, cancelar el traslado actual
+        if (controller.IsNavMeshAgentActive())
+        {
+            CancelCurrentMovement();
+            return;
+        }
+
+        // Si el jugador interactúa con otro DoorInteractable, cancelar el movimiento actual
+        if (controller.currentInteractable != null && controller.currentInteractable != this)
+        {
+            CancelCurrentMovement();
+            return;
+        }
+
         if (isMoving)
         {
-            if (controller.IsNavMeshAgentActive())
-            {
-                CancelCurrentMovement();
-                return;
-            }
-
             // Mover al jugador hacia la posición objetivo
             player.position = Vector3.MoveTowards(player.position, targetPosition.position, moveSpeed * Time.deltaTime);
 
@@ -95,25 +111,34 @@ public class DoorInteractable : MonoBehaviour
             lookDirection.y = 0;
             player.forward = Vector3.Slerp(player.forward, lookDirection, 0.1f);
 
-            // Verificar si ha llegado a la posición
-            if (Vector3.Distance(player.position, targetPosition.position) < 0.1f)
+            // Verificar si ha llegado a la posición con mayor tolerancia
+            float distanceToTarget = Vector3.Distance(player.position, targetPosition.position);
+            bool hasArrived = distanceToTarget < 0.2f;
+
+            if (hasArrived)
             {
                 isMoving = false;
 
-                // Desactivar la cámara principal y activar la cámara del prefab
-                if (mainCamera != null)
+                // Cambio de cámara después de llegar
+                if (mainCamera != null && mainCamera.gameObject.activeSelf)
                 {
                     mainCamera.gameObject.SetActive(false);
                 }
 
-                if (prefabCamera != null)
+                if (prefabCamera != null && !prefabCamera.gameObject.activeSelf)
                 {
                     prefabCamera.gameObject.SetActive(true);
                     Debug.Log("Cambiando a la cámara del prefab.");
                 }
+
+                // Limpiar el interactable actual en el controlador
+                controller.currentInteractable = null;
             }
         }
     }
+
+
+
 
     void HandleEscape()
     {
