@@ -6,11 +6,14 @@ public class DoorInteractable : MonoBehaviour
     public float moveSpeed = 10f;
     private PlayerController controller;
     private bool isMoving = false;
-    private float _doorScale;
+
+    
 
     [Header("Camera Settings")]
     private Camera mainCamera;
-    private Camera prefabCamera;
+    public Camera prefabCamera;
+
+
 
     private void Start()
     {
@@ -25,6 +28,7 @@ public class DoorInteractable : MonoBehaviour
 
         // Buscar la cámara del prefab entre los hijos
         prefabCamera = GetComponentInChildren<Camera>(true);
+
         if (prefabCamera == null)
         {
             Debug.LogError("No se encontró ninguna cámara como hijo del objeto interactuable.");
@@ -44,12 +48,10 @@ public class DoorInteractable : MonoBehaviour
 
     public void OnInteractStart()
     {
-        
-
         // Verificar si la cámara activa es la mainCamera
         if (mainCamera == null || !mainCamera.gameObject.activeSelf)
         {
-            Debug.Log("Interacción bloqueada: la cámara principal no está activa.");
+            //Debug.Log("Interacción bloqueada: la cámara principal no está activa.");
             return; // Salir de la función si la cámara principal no está activa
         }
 

@@ -37891,7 +37891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.07450981}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -126964,7 +126964,7 @@ GameObject:
   - component: {fileID: 1983650581}
   - component: {fileID: 1983650580}
   m_Layer: 5
-  m_Name: CanvasScreen
+  m_Name: CanvasMainScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127020,8 +127020,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_Camera: {fileID: 1448509604321137135, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
+  m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -127031,7 +127031,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1983650583
 RectTransform:
@@ -130538,7 +130538,7 @@ MonoBehaviour:
   Mat1: 0
   Mat2: 0
   Mat3: 0
-  Disply: {fileID: 1152936334}
+  Display: {fileID: 1152936334}
 --- !u!4 &2046229113
 Transform:
   m_ObjectHideFlags: 0

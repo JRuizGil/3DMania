@@ -175,11 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bef662237284ca4bb52379c1437493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 6757548466675187095}
   clickEffect: {fileID: 1723118237732535431, guid: 42152230f2103e042ad40cc2740f926c, type: 3}
   clickableLayers:
     serializedVersion: 2
     m_Bits: 8
-  lookRotationSpeed: 50
   currentInteractable: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
   cameraTransform: {fileID: 1175617602885576809, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
 --- !u!1 &4595331059629435334
