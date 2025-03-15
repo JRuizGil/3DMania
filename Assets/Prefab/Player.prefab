@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5067406683355423647}
   - component: {fileID: 3498253549140051424}
   - component: {fileID: 6660587468252787402}
-  - component: {fileID: 731322620594994093}
   - component: {fileID: 6757548466675187095}
+  - component: {fileID: 731322620594994093}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c28c4dc1dd72d6f48a01508965cced48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,25 +141,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &731322620594994093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4202138304582879350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bef662237284ca4bb52379c1437493f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  clickEffect: {fileID: 1723118237732535431, guid: 42152230f2103e042ad40cc2740f926c, type: 3}
-  clickableLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  currentInteractable: {fileID: 0}
-  cameraTransform: {fileID: 1175617602885576809, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
 --- !u!195 &6757548466675187095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -173,7 +154,7 @@ NavMeshAgent:
   m_Speed: 10
   m_Acceleration: 9999
   avoidancePriority: 50
-  m_AngularSpeed: 170
+  m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -182,6 +163,25 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &731322620594994093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202138304582879350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bef662237284ca4bb52379c1437493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickEffect: {fileID: 1723118237732535431, guid: 42152230f2103e042ad40cc2740f926c, type: 3}
+  clickableLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  lookRotationSpeed: 50
+  currentInteractable: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+  cameraTransform: {fileID: 1175617602885576809, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
 --- !u!1 &4595331059629435334
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,8 +210,8 @@ Transform:
   m_GameObject: {fileID: 4595331059629435334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.983, z: 0.198}
-  m_LocalScale: {x: 0.35143834, y: 0.15117823, z: 0.35143834}
+  m_LocalPosition: {x: 0, y: 0.983, z: 0.162}
+  m_LocalScale: {x: 0.20503967, y: 0.15117823, z: 0.09712701}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 999436870654048141}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,20 +25,36 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         input = new CustomActions();  
         AssignInputs();
     }
-
+    void OnEnable()
+    {
+        input.Enable();
+    }
+    void OnDisable()
+    {
+        input.Disable();
+    }
+    void Update()
+    {
+        FaceTarget();
+        HandleClick();
+    }
     void AssignInputs()
     {
         input.Main.Move.performed += ctx => ClickToMove();
     }
-
     void ClickToMove()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+
+        if (activeCamera == null) return; // Si no hay ninguna cámara activa, salir.
+
+        Ray ray = activeCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
         float nearestValidDistance = Mathf.Infinity;
         RaycastHit? validHit = null;
@@ -76,7 +93,6 @@ public class PlayerController : MonoBehaviour
     {
         return !agent.isStopped && agent.hasPath; 
     }
-
     void FaceTarget()
     {
         if (!agent.isStopped && agent.velocity.sqrMagnitude > 0.1f)
@@ -85,38 +101,15 @@ public class PlayerController : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotationSpeed);
         }
-    }
-
-    void OnEnable()
-    {
-        input.Enable();
-    }
-    void OnDisable()
-    {
-        input.Disable();
-    }
-    void Update()
-    {
-        FaceTarget();
-        HandleClick();
-    }
-
-    //    void HandleExit()
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.Escape))
-    //        {
-    //#if UNITY_EDITOR
-    //            UnityEditor.EditorApplication.isPlaying = false;
-    //#else
-    //            Application.Quit();
-    //#endif
-    //        }
-    //    }
+    }    
     public void HandleClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+            if (activeCamera == null) return; // Si no hay una cámara activa, salir.
+
+            Ray ray = activeCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))

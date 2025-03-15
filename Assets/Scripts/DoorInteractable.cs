@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class DoorInteractable : MonoBehaviour
 {
     public Transform player;
@@ -7,6 +6,7 @@ public class DoorInteractable : MonoBehaviour
     public float moveSpeed = 10f;
     private PlayerController controller;
     private bool isMoving = false;
+    private float _doorScale;
 
     [Header("Camera Settings")]
     private Camera mainCamera;
@@ -44,8 +44,21 @@ public class DoorInteractable : MonoBehaviour
 
     public void OnInteractStart()
     {
+        
+
+        // Verificar si la cámara activa es la mainCamera
+        if (mainCamera == null || !mainCamera.gameObject.activeSelf)
+        {
+            Debug.Log("Interacción bloqueada: la cámara principal no está activa.");
+            return; // Salir de la función si la cámara principal no está activa
+        }
+
         if (controller != null && Vector3.Distance(player.position, targetPosition.position) > 0.1f)
         {
+            LeanTween.scale(transform.GetChild(0).gameObject, Vector3.one * 0.8f, 0.05f)
+     .setEase(LeanTweenType.easeOutQuad)
+     .setOnComplete(() => LeanTween.scale(transform.GetChild(0).gameObject, Vector3.one, 0.05f));
+
             CancelCurrentMovement(); // Cancelar el movimiento anterior
             Debug.Log("IsMoving true");
 
@@ -62,8 +75,6 @@ public class DoorInteractable : MonoBehaviour
             Debug.Log("El jugador ya está en la posición, no se puede interactuar de nuevo.");
         }
     }
-
-
 
     private void CancelCurrentMovement()
     {
@@ -84,7 +95,6 @@ public class DoorInteractable : MonoBehaviour
             }
         }
     }
-
     void PlayerMove()
     {
         // Si el jugador ha comenzado a moverse a otra posición usando NavMesh, cancelar el traslado actual
@@ -103,8 +113,9 @@ public class DoorInteractable : MonoBehaviour
 
         if (isMoving)
         {
-            // Mover al jugador hacia la posición objetivo
-            player.position = Vector3.MoveTowards(player.position, targetPosition.position, moveSpeed * Time.deltaTime);
+            // Mover al jugador hacia la posición objetivo con interpolación
+            float step = moveSpeed * Time.deltaTime;
+            player.position = Vector3.MoveTowards(player.position, targetPosition.position, step);
 
             // Hacer que el jugador mire hacia el objeto interactuable
             Vector3 lookDirection = (transform.position - player.position).normalized;
@@ -113,9 +124,9 @@ public class DoorInteractable : MonoBehaviour
 
             // Verificar si ha llegado a la posición con mayor tolerancia
             float distanceToTarget = Vector3.Distance(player.position, targetPosition.position);
-            bool hasArrived = distanceToTarget < 0.2f;
+            bool hasArrived = distanceToTarget < 0.5f; // Aumentamos la tolerancia
 
-            if (hasArrived)
+            if (hasArrived || Mathf.Approximately(distanceToTarget, 0f)) // Asegurar que llegó
             {
                 isMoving = false;
 
@@ -135,11 +146,8 @@ public class DoorInteractable : MonoBehaviour
                 controller.currentInteractable = null;
             }
         }
+
     }
-
-
-
-
     void HandleEscape()
     {
         // Si la cámara del prefab está activa y se pulsa Escape, revertir el cambio
@@ -154,3 +162,4 @@ public class DoorInteractable : MonoBehaviour
         }
     }
 }
+
