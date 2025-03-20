@@ -18,10 +18,12 @@ public class ClickerEvent : MonoBehaviour
     private Camera prefabCamera;
     private Camera mainCamera;
     private bool wasCameraInactive = false;
+    private Animator animator;
 
     private void Start()
     {
         prefabCamera = GetComponentInChildren<Camera>(true);
+        animator = GetComponentInChildren<Animator>(true);
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(false);
