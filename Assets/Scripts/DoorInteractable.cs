@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using Unity.VisualScripting;
+
 public class DoorInteractable : MonoBehaviour
 {
     public Transform player;
@@ -7,161 +11,85 @@ public class DoorInteractable : MonoBehaviour
     private PlayerController controller;
     private bool isMoving = false;
 
-    
-
     [Header("Camera Settings")]
     private Camera mainCamera;
     public Camera prefabCamera;
 
-
+    // Referencia al script ClickerEvent
+    private ClickerEvent clickerEvent;
 
     private void Start()
     {
         controller = player.GetComponent<PlayerController>();
-
-        // Obtener la cámara principal automáticamente
         mainCamera = Camera.main;
-        if (mainCamera == null)
-        {
-            Debug.LogError("No se encontró la cámara principal (Main Camera).");
-        }
 
-        // Buscar la cámara del prefab entre los hijos
         prefabCamera = GetComponentInChildren<Camera>(true);
-
-        if (prefabCamera == null)
-        {
-            Debug.LogError("No se encontró ninguna cámara como hijo del objeto interactuable.");
-        }
-        else
-        {
-            // Asegurarse de que esté desactivada inicialmente
+        if (prefabCamera != null)
             prefabCamera.gameObject.SetActive(false);
-        }
-    }
 
+        clickerEvent = GetComponentInChildren<ClickerEvent>();
+    }
     private void Update()
     {
         PlayerMove();
         HandleEscape();
     }
-
+    private bool IsCameraActive(Camera cam)
+    {
+        return cam != null && cam.gameObject.activeSelf;
+    }
     public void OnInteractStart()
     {
-        // Verificar si la cámara activa es la mainCamera
-        if (mainCamera == null || !mainCamera.gameObject.activeSelf)
-        {
-            //Debug.Log("Interacción bloqueada: la cámara principal no está activa.");
-            return; // Salir de la función si la cámara principal no está activa
-        }
+        if (!IsCameraActive(mainCamera)) return;
 
         if (controller != null && Vector3.Distance(player.position, targetPosition.position) > 0.1f)
         {
-            LeanTween.scale(transform.GetChild(0).gameObject, Vector3.one * 0.8f, 0.05f)
-     .setEase(LeanTweenType.easeOutQuad)
-     .setOnComplete(() => LeanTween.scale(transform.GetChild(0).gameObject, Vector3.one, 0.05f));
+            var childTransform = transform.GetChild(0);
+            Vector3 originalScale = childTransform.localScale;
 
-            CancelCurrentMovement(); // Cancelar el movimiento anterior
-            Debug.Log("IsMoving true");
+            LeanTween.scale(childTransform.gameObject, Vector3.one * 0.8f, 0.05f)
+                .setEase(LeanTweenType.easeOutQuad)
+                .setOnComplete(() => {
+                    LeanTween.scale(childTransform.gameObject, originalScale, 0.05f);
+                });
 
-            // Detener y desactivar el NavMeshAgent antes de moverse manualmente
+            CancelCurrentMovement();
             controller.StopNavMeshAgent();
-
-            // Marcar el interactable actual en el controlador
             controller.currentInteractable = this;
-
             isMoving = true;
         }
-        else
-        {
-            Debug.Log("El jugador ya está en la posición, no se puede interactuar de nuevo.");
-        }
     }
-
     private void CancelCurrentMovement()
     {
         if (isMoving)
         {
             isMoving = false;
-            Debug.Log("Movimiento cancelado.");
-
-            // Reactivar la cámara principal si estaba cambiada
-            if (prefabCamera != null && prefabCamera.gameObject.activeSelf)
-            {
-                prefabCamera.gameObject.SetActive(false);
-                if (mainCamera != null)
-                {
-                    mainCamera.gameObject.SetActive(true);
-                    Debug.Log("Volviendo a la cámara principal tras cancelar.");
-                }
-            }
+            prefabCamera?.gameObject.SetActive(false);
+            mainCamera?.gameObject.SetActive(true);
         }
     }
-    void PlayerMove()
+    private void PlayerMove()
     {
-        // Si el jugador ha comenzado a moverse a otra posición usando NavMesh, cancelar el traslado actual
-        if (controller.IsNavMeshAgentActive())
-        {
-            CancelCurrentMovement();
-            return;
-        }
-
-        // Si el jugador interactúa con otro DoorInteractable, cancelar el movimiento actual
-        if (controller.currentInteractable != null && controller.currentInteractable != this)
-        {
-            CancelCurrentMovement();
-            return;
-        }
-
         if (isMoving)
         {
-            // Mover al jugador hacia la posición objetivo con interpolación
             float step = moveSpeed * Time.deltaTime;
-            player.position = Vector3.MoveTowards(player.position, targetPosition.position, step);
+            player.position = Vector3.Lerp(player.position, targetPosition.position, step);
 
-            // Hacer que el jugador mire hacia el objeto interactuable
-            Vector3 lookDirection = (transform.position - player.position).normalized;
-            lookDirection.y = 0;
-            player.forward = Vector3.Slerp(player.forward, lookDirection, 0.1f);
-
-            // Verificar si ha llegado a la posición con mayor tolerancia
-            float distanceToTarget = Vector3.Distance(player.position, targetPosition.position);
-            bool hasArrived = distanceToTarget < 0.5f; // Aumentamos la tolerancia
-
-            if (hasArrived || Mathf.Approximately(distanceToTarget, 0f)) // Asegurar que llegó
+            if (Vector3.Distance(player.position, targetPosition.position) < 0.5f)
             {
                 isMoving = false;
-
-                // Cambio de cámara después de llegar
-                if (mainCamera != null && mainCamera.gameObject.activeSelf)
-                {
-                    mainCamera.gameObject.SetActive(false);
-                }
-
-                if (prefabCamera != null && !prefabCamera.gameObject.activeSelf)
-                {
-                    prefabCamera.gameObject.SetActive(true);
-                    Debug.Log("Cambiando a la cámara del prefab.");
-                }
-
-                // Limpiar el interactable actual en el controlador
-                controller.currentInteractable = null;
+                mainCamera?.gameObject.SetActive(false);
+                prefabCamera?.gameObject.SetActive(true);
+                clickerEvent?.UpdateCooldownText(); // Corregido
             }
         }
-
     }
-    void HandleEscape()
+    private void HandleEscape()
     {
-        // Si la cámara del prefab está activa y se pulsa Escape, revertir el cambio
-        if (prefabCamera != null && prefabCamera.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (IsCameraActive(prefabCamera) && Input.GetKeyDown(KeyCode.Escape))
         {
-            prefabCamera.gameObject.SetActive(false);
-            if (mainCamera != null)
-            {
-                mainCamera.gameObject.SetActive(true);
-                Debug.Log("Cambiando de vuelta a la cámara principal.");
-            }
+            prefabCamera?.gameObject.SetActive(false);
+            mainCamera?.gameObject.SetActive(true);
         }
     }
 }
-

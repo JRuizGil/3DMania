@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bef662237284ca4bb52379c1437493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 6757548466675187095}
+  agent: {fileID: 0}
   clickEffect: {fileID: 1723118237732535431, guid: 42152230f2103e042ad40cc2740f926c, type: 3}
   clickableLayers:
     serializedVersion: 2
