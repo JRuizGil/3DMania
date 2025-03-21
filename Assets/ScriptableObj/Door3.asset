@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c71e4d36d9af246937a9412b06a988, type: 3}
   m_Name: Door3
   m_EditorClassIdentifier: 
-  timerDuration: 5
-  cooldownTime: 5
-  materialMultiplier: 5
+  timerDuration: 7
+  cooldownTime: 7
+  materialMultiplier: 7

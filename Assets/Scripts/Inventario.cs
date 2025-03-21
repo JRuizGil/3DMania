@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         // Actualizar la UI para mostrar los materiales actuales
-        Display.text = $"Mat1: {Mat1} | Mat2: {Mat2} | Mat3: {Mat3}";
+        Display.text = $"M1:{Mat1}/ M2:{Mat2}/ M3:{Mat3}";
     }
 
     public void AddMaterials(int totalMaterials)

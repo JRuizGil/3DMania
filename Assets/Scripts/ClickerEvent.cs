@@ -23,10 +23,16 @@ public class ClickerEvent : MonoBehaviour
     private void Start()
     {
         prefabCamera = GetComponentInChildren<Camera>(true);
-        animator = GetComponentInChildren<Animator>(true);
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(false);
+
+        // Buscar el Animator en el hijo llamado "Estruct"
+        Transform child = transform.Find("Estruct");
+        if (child != null)
+        {
+            animator = child.GetComponent<Animator>();
+        }
     }
     private void Update()
     {
@@ -78,14 +84,17 @@ public class ClickerEvent : MonoBehaviour
     }
     private void StartGame()
     {
+        animator.SetBool("Open", true);
         gameActive = true;
         timer = eventData.timerDuration;
         clickCount = 0;
         PanelTxt?.SetActive(true);
         UpdateUIText(timerText, $"Tiempo restante: {timer:F1} s");
+
     }
     private void EndGame()
     {
+        animator.SetBool("Open", false);
         gameActive = false;
         int totalMaterials = Mathf.RoundToInt((float)clickCount / eventData.timerDuration * eventData.materialMultiplier);
         inventory?.AddMaterials(totalMaterials);
