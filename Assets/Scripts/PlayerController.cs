@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        input = new CustomActions();  
+        input = new CustomActions();
         AssignInputs();
     }
     void OnEnable()
@@ -47,7 +47,12 @@ public class PlayerController : MonoBehaviour
     }
     void AssignInputs()
     {
-        input.Main.Move.performed += ctx => ClickToMove();
+        input.Main.Move.performed += ctx => StartCoroutine(DelayedClickToMove());
+    }
+    IEnumerator DelayedClickToMove()
+    {
+        yield return null; // Espera un frame antes de ejecutar ClickToMove
+        ClickToMove();
     }
     void ClickToMove()
     {
@@ -79,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (validHit.HasValue)
         {
-            agent.isStopped = false;  
+            agent.isStopped = false;
             agent.destination = validHit.Value.point;
 
             if (clickEffect != null)
@@ -96,7 +101,7 @@ public class PlayerController : MonoBehaviour
     }
     public bool IsNavMeshAgentActive()
     {
-        return !agent.isStopped && agent.hasPath; 
+        return !agent.isStopped && agent.hasPath;
     }
     void FaceTarget()
     {
@@ -106,7 +111,7 @@ public class PlayerController : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotationSpeed);
         }
-    }    
+    }
     public void HandleClick()
     {
         if (Input.GetMouseButtonDown(0))
@@ -134,5 +139,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 }
