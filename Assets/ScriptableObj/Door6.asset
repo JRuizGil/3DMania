@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13c71e4d36d9af246937a9412b06a988, type: 3}
-  m_Name: Door
+  m_Name: Door6
   m_EditorClassIdentifier: 
-  timerDuration: 4
-  cooldownTime: 4
-  materialMultiplier: 4
+  timerDuration: 11
+  cooldownTime: 11
+  materialMultiplier: 11
+  price: 110
+  cps: 11
+  door: 6
+  progress: 0
