@@ -96,7 +96,7 @@ public class ClickerEvent : MonoBehaviour
     {
         animator.SetBool("Open", false);
         gameActive = false;
-        int totalMaterials = Mathf.RoundToInt((float)clickCount / eventData.timerDuration * eventData.materialMultiplier);
+        int totalMaterials = Mathf.RoundToInt((float)clickCount * eventData.materialMultiplier);
         inventory?.AddMaterials(totalMaterials);
         cooldownTimer = eventData.cooldownTime;
         StartCoroutine(CooldownRoutine());

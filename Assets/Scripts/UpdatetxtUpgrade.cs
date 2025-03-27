@@ -6,9 +6,9 @@ public class UpdatetxtUpgrade : MonoBehaviour
 {
     public ClickerEventData eventData;
     private Text text;
-    private float lvl;
-    private float cps;
-    private float door;
+    [SerializeField]public float lvl;
+    [SerializeField]public float cps;
+    [SerializeField]public float door;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class UpdatetxtUpgrade : MonoBehaviour
     public void SumCPSandLVL()
     {
         lvl++;
-        cps = cps*1.1f;
+        cps = (cps+1)*1.1f;
         text.text = $"Door:{door}CPS:{cps:F2}LVL:{lvl}";
     }
 }

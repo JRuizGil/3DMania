@@ -13,7 +13,7 @@ public class UpdateBtnUpgrade : MonoBehaviour
         if (eventData != null && text != null)
         {
             price = eventData.price;
-            text.text = $"{price}€";
+            text.text = $"{price:F2}€";
         }
     }
 
@@ -27,7 +27,7 @@ public class UpdateBtnUpgrade : MonoBehaviour
         price *= 1.1f;
         if (text != null)
         {
-            text.text = $"{price:F2}€"; // Formatea a 2 decimales
+            text.text = $"{price:F2}€"; 
         }
     }
     public float GetPrice()

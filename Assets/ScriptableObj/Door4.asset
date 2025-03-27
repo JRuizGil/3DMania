@@ -15,7 +15,8 @@ MonoBehaviour:
   timerDuration: 5
   cooldownTime: 5
   materialMultiplier: 5
-  price: 50
-  cps: 5
+  price: 50000
+  cps: 0
   door: 4
-  progress: 0
+  lvl: 0
+  AutoMatePrefab: {fileID: 0}

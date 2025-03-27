@@ -16,6 +16,7 @@ MonoBehaviour:
   cooldownTime: 1
   materialMultiplier: 1
   price: 10
-  cps: 1
+  cps: 0
   door: 1
-  progress: 0
+  lvl: 0
+  AutoMatePrefab: {fileID: 2593488012899583450, guid: f79bf707faa73184a8ad87ee459dc8db, type: 3}

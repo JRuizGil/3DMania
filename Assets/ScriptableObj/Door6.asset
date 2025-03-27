@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c71e4d36d9af246937a9412b06a988, type: 3}
   m_Name: Door6
   m_EditorClassIdentifier: 
-  timerDuration: 11
-  cooldownTime: 11
-  materialMultiplier: 11
-  price: 110
-  cps: 11
+  timerDuration: 13
+  cooldownTime: 13
+  materialMultiplier: 13
+  price: 1300000
+  cps: 0
   door: 6
-  progress: 0
+  lvl: 0
+  AutoMatePrefab: {fileID: 0}
