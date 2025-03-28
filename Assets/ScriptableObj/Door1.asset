@@ -16,7 +16,7 @@ MonoBehaviour:
   cooldownTime: 0.6
   materialMultiplier: 1.07
   price: 4
-  actualearn: 4
+  actualearn: 1
   door: 1
   lvl: 0
   initialrevenue: 4

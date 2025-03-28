@@ -27,7 +27,7 @@ public class UpdatetxtUpgrade : MonoBehaviour
         if (eventData != null && text != null)
         {
             // Actualiza el texto con los valores actuales
-            text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{(actualearn >= 100000 ? actualearn.ToString("0.##E+0") : actualearn.ToString("F1"))}| LVL:{lvl}";
+            text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{actualearn:F2}| LVL:{lvl}";
         }
 
     }
@@ -38,7 +38,7 @@ public class UpdatetxtUpgrade : MonoBehaviour
     public void SumCPSandLVL()
     {
         lvl++;
-        actualearn = (actualearn*lvl)*multiplier;
-        text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{(actualearn >= 100000 ? actualearn.ToString("0.##E+0") : actualearn.ToString("F1"))}| LVL:{lvl}";
+        actualearn = actualearn * Mathf.Pow(multiplier, lvl);
+        text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{actualearn:F2}| LVL:{lvl}";
     }
 }

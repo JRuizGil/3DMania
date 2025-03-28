@@ -4,8 +4,9 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public float Mat1;
-
     public Text Display;
+
+    private bool wasNegative = false; // Para rastrear si Mat1 ya ha sido negativo
 
     private void Start()
     {
@@ -15,14 +16,13 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         // Actualizar la UI para mostrar los materiales actuales con formato adaptativo
-        Display.text = $"Dinero:{(Mat1 >= 1_000_000 ? Mat1.ToString("0.##E+0") : Mat1.ToString("F2"))}€";
+        Display.text = $"Dinero: {Mat1:F2}€";
     }
 
     public void AddMaterials(int totalMaterials)
     {
         Mat1 += totalMaterials;
-
-        Debug.Log($"Dinero añadido: {(Mat1 >= 1_000_000 ? Mat1.ToString("0.##E+0") : Mat1.ToString("F2"))}€");
+        Debug.Log($"Dinero: {Mat1:F2}€");
     }
-
 }
+

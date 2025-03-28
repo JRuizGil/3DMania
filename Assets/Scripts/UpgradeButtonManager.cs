@@ -19,7 +19,7 @@ public class UpgradeButtonManager : MonoBehaviour
         {
             float price = updateBtnUpgrade.GetPrice(); // Obtener el precio actual de la mejora
 
-            if (inventory.Mat1 >= price) // Verifica si tiene suficiente dinero
+            if (inventory.Mat1 > price) // Verifica si tiene suficiente dinero
             {
                 inventory.Mat1 -= price; // Resta el precio de la mejora
                 updateBtnUpgrade.MultiplyPrice(); // Aumenta el precio para la siguiente compra

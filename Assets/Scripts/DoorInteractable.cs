@@ -75,7 +75,7 @@ public class DoorInteractable : MonoBehaviour
             float step = moveSpeed * Time.deltaTime;
             player.position = Vector3.Lerp(player.position, targetPosition.position, step);
 
-            if (Vector3.Distance(player.position, targetPosition.position) < 0.5f)
+            if (Vector3.Distance(player.position, targetPosition.position) < 0.4f)
             {
                 isMoving = false;
                 mainCamera?.gameObject.SetActive(false);
