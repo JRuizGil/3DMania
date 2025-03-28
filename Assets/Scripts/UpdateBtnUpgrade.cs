@@ -3,31 +3,35 @@ using UnityEngine.UI;
 
 public class UpdateBtnUpgrade : MonoBehaviour
 {
-    public ClickerEventData eventData;
+    public ClickerEventData ClickerEventData;
+    public UpdatetxtUpgrade UpdatetxtUpgrade;
     private Text text;
     private float price;
+    private float pricemultiplier;
+    private float lvl;
 
     private void Start()
     {
+        pricemultiplier = ClickerEventData.materialMultiplier;
         text = GetComponent<Text>();
-        if (eventData != null && text != null)
+        if (ClickerEventData != null && text != null)
         {
-            price = eventData.price;
-            text.text = $"{price:F2}€";
+            price = ClickerEventData.price;
+            text.text = $"Buy:{price:F2}€";
         }
     }
 
     private void FixedUpdate()
     {
-        
+        lvl = UpdatetxtUpgrade.lvl;
     }
 
     public void MultiplyPrice()
     {
-        price *= 1.1f;
+        price *= Mathf.Pow(pricemultiplier, lvl);
         if (text != null)
         {
-            text.text = $"{price:F2}€"; 
+            text.text = $"Buy:{price:F2}€"; 
         }
     }
     public float GetPrice()

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Door5
   m_EditorClassIdentifier: 
   timerDuration: 8
-  cooldownTime: 8
-  materialMultiplier: 8
-  price: 800000
-  cps: 0
+  cooldownTime: 24
+  materialMultiplier: 1.12
+  price: 103680
+  actualearn: 51840
   door: 5
   lvl: 0
-  AutoMatePrefab: {fileID: 0}
+  initialrevenue: 51840
+  AutoMatePrefab: {fileID: 1137053292659747652, guid: 9f08210a337b0ed43ada8abed3a5b753, type: 3}

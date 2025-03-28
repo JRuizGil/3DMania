@@ -19,13 +19,23 @@ public class ClickerEvent : MonoBehaviour
     private Camera mainCamera;
     private bool wasCameraInactive = false;
     private Animator animator;
-
+    private float initialearn;
+    private Transform Fantasma;
+    private Vector3 escalaOriginal;
     private void Start()
     {
         prefabCamera = GetComponentInChildren<Camera>(true);
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(false);
+        initialearn = eventData.initialrevenue;
+        Fantasma = transform.Find("Fantasma");
+
+        // Guardar la escala original de Fantasma
+        if (Fantasma != null)
+        {
+            escalaOriginal = Fantasma.localScale;
+        }
 
         // Buscar el Animator en el hijo llamado "Estruct"
         Transform child = transform.Find("Estruct");
@@ -63,6 +73,17 @@ public class ClickerEvent : MonoBehaviour
         {
             if (!gameActive) StartGame();
             clickCount++;
+
+            if (Fantasma != null)
+            {
+                LeanTween.scale(Fantasma.gameObject, escalaOriginal * 0.8f, 0.05f) // Reducir tamaño relativo
+                    .setEase(LeanTweenType.easeOutQuad)
+                    .setOnComplete(() =>
+                    {
+                        LeanTween.scale(Fantasma.gameObject, escalaOriginal, 0.05f) // Volver a la escala original
+                            .setEase(LeanTweenType.easeInQuad);
+                    });
+            }
         }
 
         if (gameActive)
@@ -96,7 +117,7 @@ public class ClickerEvent : MonoBehaviour
     {
         animator.SetBool("Open", false);
         gameActive = false;
-        int totalMaterials = Mathf.RoundToInt((float)clickCount * eventData.materialMultiplier);
+        int totalMaterials = Mathf.RoundToInt((float)clickCount + initialearn);
         inventory?.AddMaterials(totalMaterials);
         cooldownTimer = eventData.cooldownTime;
         StartCoroutine(CooldownRoutine());

@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UpdatetxtUpgrade : MonoBehaviour
@@ -7,20 +9,27 @@ public class UpdatetxtUpgrade : MonoBehaviour
     public ClickerEventData eventData;
     private Text text;
     [SerializeField]public float lvl;
-    [SerializeField]public float cps;
+    [SerializeField]public float actualearn;
     [SerializeField]public float door;
+    [SerializeField]public float multiplier;
+    [SerializeField]public float initialrevenue;
+    [SerializeField]public float Cooldown;
 
     private void Start()
     {
+        initialrevenue = eventData.initialrevenue;
+        Cooldown = eventData.cooldownTime;
         text = GetComponent<Text>();
         lvl = eventData.lvl;
-        cps = eventData.cps;
+        actualearn = eventData.actualearn;
         door = eventData.door;
+        multiplier = eventData.materialMultiplier;
         if (eventData != null && text != null)
         {
             // Actualiza el texto con los valores actuales
-            text.text = $"Door:{door}CPS:{cps}LVL:{lvl}";
+            text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{(actualearn >= 100000 ? actualearn.ToString("0.##E+0") : actualearn.ToString("F1"))}| LVL:{lvl}";
         }
+
     }
     private void FixedUpdate()
     {
@@ -29,7 +38,7 @@ public class UpdatetxtUpgrade : MonoBehaviour
     public void SumCPSandLVL()
     {
         lvl++;
-        cps = (cps+1)*1.1f;
-        text.text = $"Door:{door}CPS:{cps:F2}LVL:{lvl}";
+        actualearn = (actualearn*lvl)*multiplier;
+        text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{(actualearn >= 100000 ? actualearn.ToString("0.##E+0") : actualearn.ToString("F1"))}| LVL:{lvl}";
     }
 }

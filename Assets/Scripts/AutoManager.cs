@@ -6,22 +6,34 @@ public class AutoManager : MonoBehaviour
     public Inventory Inventory;
     public ClickerEventData ClickerEventData;
 
-    private float cps;
+    private float actualearn;
+    private float cooldown;
+    private float lvl;
+    private float initialrevenue;
 
     private void Start()
-    {
-        InvokeRepeating("Automatizar", 1f, 1f); // Llama a Automatizar cada segundo
+    {        
+        cooldown = ClickerEventData.cooldownTime;
+        initialrevenue = ClickerEventData.initialrevenue;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        cps = UpdatetxtUpgrade.cps; // Actualiza cps en cada frame
+        actualearn = UpdatetxtUpgrade.actualearn; // Actualiza cps en cada frame
+        lvl = UpdatetxtUpgrade.lvl;
+    }
+    void Update()
+    {
+        if (lvl > 0 && !IsInvoking("Automatizar"))
+        {
+            InvokeRepeating("Automatizar", cooldown, cooldown);
+        }
     }
 
     public void Automatizar()
     {
-        int totalMaterials = Mathf.RoundToInt((float)cps * ClickerEventData.materialMultiplier);
-        Inventory.AddMaterials(totalMaterials); // Añade cps al inventario cada segundo
+        int totalMaterials = Mathf.RoundToInt((float)actualearn);
+        Inventory.AddMaterials(totalMaterials); // Añade cps al inventario cada llamada
     }
 }
 

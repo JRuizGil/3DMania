@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Door2
   m_EditorClassIdentifier: 
   timerDuration: 2
-  cooldownTime: 2
-  materialMultiplier: 2
-  price: 200
-  cps: 0
+  cooldownTime: 3
+  materialMultiplier: 1.15
+  price: 60
+  actualearn: 60
   door: 2
   lvl: 0
+  initialrevenue: 60
+  AutoMatePrefab: {fileID: 1465014531508450258, guid: c3445d568b541934f8ce94b7ee131ea5, type: 3}
