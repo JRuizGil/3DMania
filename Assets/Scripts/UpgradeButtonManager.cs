@@ -4,7 +4,7 @@ public class UpgradeButtonManager : MonoBehaviour
 {
     private Inventory inventory;
     public UpdateBtnUpgrade updateBtnUpgrade;
-    public UpdatetxtUpgrade uptxt;
+    public UpdatetxtUpgrade UpdatetxtUpgrade;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class UpgradeButtonManager : MonoBehaviour
             {
                 inventory.Mat1 -= price; // Resta el precio de la mejora
                 updateBtnUpgrade.MultiplyPrice(); // Aumenta el precio para la siguiente compra
-                uptxt.SumCPSandLVL();
+                UpdatetxtUpgrade.SumCPSandLVL();
             }
             else
             {

@@ -443,7 +443,7 @@ MonoBehaviour:
   PanelTxt: {fileID: 6724204462724981565}
   timerText: {fileID: 6168362643483111947}
   cooldownText: {fileID: 1620729079542200016}
-  eventData: {fileID: 11400000, guid: 3b85e7fb2c50d094e8f597f1e3db708c, type: 2}
+  eventData: {fileID: 0}
 --- !u!1 &1405196352223806642
 GameObject:
   m_ObjectHideFlags: 0

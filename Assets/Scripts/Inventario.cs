@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
         Display.text = $"Dinero: {Mat1:F2}€";
     }
 
-    public void AddMaterials(int totalMaterials)
+    public void AddMaterials(float totalMaterials)
     {
         Mat1 += totalMaterials;
         Debug.Log($"Dinero: {Mat1:F2}€");

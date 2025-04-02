@@ -15,6 +15,7 @@ public class AutoManager : MonoBehaviour
     {        
         cooldown = ClickerEventData.cooldownTime;
         initialrevenue = ClickerEventData.initialrevenue;
+        gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -24,7 +25,7 @@ public class AutoManager : MonoBehaviour
     }
     void Update()
     {
-        if (lvl > 0 && !IsInvoking("Automatizar"))
+        if (!IsInvoking("Automatizar"))
         {
             InvokeRepeating("Automatizar", cooldown, cooldown);
         }
