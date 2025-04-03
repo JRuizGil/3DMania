@@ -16,6 +16,9 @@ public class DoorInteractable : MonoBehaviour
 
     private ClickerEvent clickerEvent;
 
+    public UpdatetxtUpgrade nexttxtupgrade;
+    public GameObject prfbnextDoor;
+
     private void Start()
     {
         controller = player.GetComponent<PlayerController>();
@@ -32,6 +35,10 @@ public class DoorInteractable : MonoBehaviour
     {
         PlayerMove();
         HandleEscape();
+        if (nexttxtupgrade.lvl >= 1)
+        {
+            prfbnextDoor.SetActive(true);
+        }
     }
 
     private bool IsCameraActive(Camera cam)

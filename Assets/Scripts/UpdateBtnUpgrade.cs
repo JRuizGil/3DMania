@@ -6,6 +6,7 @@ public class UpdateBtnUpgrade : MonoBehaviour
     public ClickerEventData ClickerEventData;
     public UpdatetxtUpgrade UpdatetxtUpgrade;
     private Text text;
+    public GameObject Puerta;
     private float price;
     private float pricemultiplier;
     private float lvl;
@@ -21,9 +22,10 @@ public class UpdateBtnUpgrade : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         lvl = UpdatetxtUpgrade.lvl;
+        
     }
 
     public void MultiplyPrice()
