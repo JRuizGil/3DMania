@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class DoorInteractable : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class DoorInteractable : MonoBehaviour
     private Camera mainCamera;
     public Camera prefabCamera;
 
-    // Referencia al script ClickerEvent
     private ClickerEvent clickerEvent;
 
     private void Start()
@@ -29,15 +27,18 @@ public class DoorInteractable : MonoBehaviour
 
         clickerEvent = GetComponentInChildren<ClickerEvent>();
     }
+
     private void Update()
     {
         PlayerMove();
         HandleEscape();
     }
+
     private bool IsCameraActive(Camera cam)
     {
         return cam != null && cam.gameObject.activeSelf;
     }
+
     public void OnInteractStart()
     {
         if (!IsCameraActive(mainCamera)) return;
@@ -56,9 +57,11 @@ public class DoorInteractable : MonoBehaviour
             CancelCurrentMovement();
             controller.StopNavMeshAgent();
             controller.currentInteractable = this;
+            controller.isInteractingWithDoor = true; //  Bloquea el movimiento/interacción
             isMoving = true;
         }
     }
+
     private void CancelCurrentMovement()
     {
         if (isMoving)
@@ -66,8 +69,10 @@ public class DoorInteractable : MonoBehaviour
             isMoving = false;
             prefabCamera?.gameObject.SetActive(false);
             mainCamera?.gameObject.SetActive(true);
+            controller.isInteractingWithDoor = false; //  Habilita nuevamente el movimiento/interacción
         }
     }
+
     private void PlayerMove()
     {
         if (isMoving)
@@ -80,16 +85,18 @@ public class DoorInteractable : MonoBehaviour
                 isMoving = false;
                 mainCamera?.gameObject.SetActive(false);
                 prefabCamera?.gameObject.SetActive(true);
-                clickerEvent?.UpdateCooldownText(); 
+                clickerEvent?.UpdateCooldownText();
             }
         }
     }
+
     private void HandleEscape()
     {
         if (IsCameraActive(prefabCamera) && Input.GetKeyDown(KeyCode.Escape))
         {
             prefabCamera?.gameObject.SetActive(false);
             mainCamera?.gameObject.SetActive(true);
+            controller.isInteractingWithDoor = false; //  Reactiva el movimiento al salir
         }
     }
 }

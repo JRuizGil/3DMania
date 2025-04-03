@@ -18,11 +18,14 @@ public class Inventory : MonoBehaviour
         // Actualizar la UI para mostrar los materiales actuales con formato adaptativo
         Display.text = $"Dinero: {Mat1:F2}€";
     }
-
     public void AddMaterials(float totalMaterials)
     {
         Mat1 += totalMaterials;
         Debug.Log($"Dinero: {Mat1:F2}€");
+    }
+    public float GetMat1()
+    {
+        return Mat1;
     }
 }
 

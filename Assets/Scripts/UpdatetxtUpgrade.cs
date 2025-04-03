@@ -36,9 +36,9 @@ public class UpdatetxtUpgrade : MonoBehaviour
         
     }
     public void SumCPSandLVL()
-    {
+    {        
+        actualearn = initialrevenue * Mathf.Log(lvl + 1);
         lvl++;
-        actualearn = actualearn * Mathf.Pow(multiplier, lvl);
         text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{actualearn:F2}| LVL:{lvl}";
     }
 }

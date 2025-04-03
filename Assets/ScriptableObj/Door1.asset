@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Door1
   m_EditorClassIdentifier: 
   timerDuration: 1
-  cooldownTime: 0.6
+  cooldownTime: 1
   materialMultiplier: 1.07
   price: 4
   actualearn: 1
@@ -21,3 +21,4 @@ MonoBehaviour:
   lvl: 0
   initialrevenue: 4
   AutoMatePrefab: {fileID: 2593488012899583450, guid: f79bf707faa73184a8ad87ee459dc8db, type: 3}
+  AutomaterPrice: 1000

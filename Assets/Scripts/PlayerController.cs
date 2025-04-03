@@ -21,60 +21,60 @@ public class PlayerController : MonoBehaviour
     float lookRotationSpeed = 8f;
 
     public DoorInteractable currentInteractable;
-
     public Transform cameraTransform;
+
+    public bool isInteractingWithDoor = false; //  Nueva variable para bloquear movimiento/interacción
 
     void Awake()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         input = new CustomActions();
         AssignInputs();
     }
-    void OnEnable()
-    {
-        input.Enable();
-    }
-    void OnDisable()
-    {
-        input.Disable();
-    }
+
+    void OnEnable() => input.Enable();
+    void OnDisable() => input.Disable();
+
     void Update()
     {
-        FaceTarget();
-        HandleClick();
+        if (IsMainCameraActive() && !isInteractingWithDoor) //  Evita que el personaje se mueva si interactúa con la puerta
+        {
+            FaceTarget();
+            HandleClick();
+        }
     }
+
     void AssignInputs()
     {
         input.Main.Move.performed += ctx => StartCoroutine(DelayedClickToMove());
     }
+
     IEnumerator DelayedClickToMove()
     {
-        yield return null; // Espera un frame antes de ejecutar ClickToMove
+        yield return null;
         ClickToMove();
     }
+
     void ClickToMove()
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-        Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+        if (!IsMainCameraActive() || isInteractingWithDoor) return; //  Bloquea el movimiento si está en una puerta
 
-        if (activeCamera == null) return; // Si no hay ninguna cámara activa, salir.
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
+        Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+        if (activeCamera == null || activeCamera.tag != "MainCamera") return;
 
         Ray ray = activeCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
+
         float nearestValidDistance = Mathf.Infinity;
         RaycastHit? validHit = null;
 
         foreach (RaycastHit hit in hits)
         {
-            if ((clickableLayers & (1 << hit.collider.gameObject.layer)) == 0)
-            {
-                return;
-            }
+            if (((1 << hit.collider.gameObject.layer) & clickableLayers) == 0) continue;
+
             if (hit.distance < nearestValidDistance)
             {
                 nearestValidDistance = hit.distance;
@@ -89,20 +89,23 @@ public class PlayerController : MonoBehaviour
 
             if (clickEffect != null)
             {
-                ParticleSystem effectInstance = Instantiate(clickEffect, validHit.Value.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
+                ParticleSystem effectInstance = Instantiate(clickEffect, validHit.Value.point + Vector3.up * 0.1f, clickEffect.transform.rotation);
                 Destroy(effectInstance.gameObject, effectInstance.main.duration);
             }
         }
     }
+
     public void StopNavMeshAgent()
     {
         agent.isStopped = true;
         agent.ResetPath();
     }
+
     public bool IsNavMeshAgentActive()
     {
         return !agent.isStopped && agent.hasPath;
     }
+
     void FaceTarget()
     {
         if (!agent.isStopped && agent.velocity.sqrMagnitude > 0.1f)
@@ -112,12 +115,17 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotationSpeed);
         }
     }
+
     public void HandleClick()
     {
+        if (!IsMainCameraActive() || isInteractingWithDoor) return; //  Bloquea interacciones si está en una puerta
+
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
-            if (activeCamera == null) return; // Si no hay una cámara activa, salir.
+            if (activeCamera == null || activeCamera.tag != "MainCamera") return;
 
             Ray ray = activeCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -128,7 +136,6 @@ public class PlayerController : MonoBehaviour
 
                 if (interactable != null)
                 {
-                    // Actualizar el interactuable actual antes de iniciar la interacción
                     currentInteractable = interactable;
                     interactable.OnInteractStart();
                 }
@@ -138,5 +145,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool IsMainCameraActive()
+    {
+        Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+        return activeCamera != null && activeCamera.tag == "MainCamera";
     }
 }
