@@ -428,6 +428,8 @@ MonoBehaviour:
   targetPosition: {fileID: 4836950095438434982}
   moveSpeed: 14
   prefabCamera: {fileID: 5182276591859814838}
+  nexttxtupgrade: {fileID: 0}
+  prfbnextDoor: {fileID: 0}
 --- !u!114 &9172302753349154066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +446,8 @@ MonoBehaviour:
   timerText: {fileID: 6168362643483111947}
   cooldownText: {fileID: 1620729079542200016}
   eventData: {fileID: 0}
+  UpdatetxtUpgrade: {fileID: 0}
+  updateBtnUpgrade: {fileID: 0}
 --- !u!1 &1405196352223806642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,7 +2371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 466374, guid: 34300443486f64d6da09f6f748778306, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.508
+      value: 0.254
       objectReference: {fileID: 0}
     - target: {fileID: 466374, guid: 34300443486f64d6da09f6f748778306, type: 3}
       propertyPath: m_LocalPosition.z
