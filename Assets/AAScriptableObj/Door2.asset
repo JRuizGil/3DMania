@@ -21,5 +21,4 @@ MonoBehaviour:
   lvl: 0
   initialrevenue: 60
   AutoMatePrefab: {fileID: 1465014531508450258, guid: c3445d568b541934f8ce94b7ee131ea5, type: 3}
-  AutomaterPricetxt: 
-  AutomaterPrice: 100000
+  AutomaterPrice: 10000
