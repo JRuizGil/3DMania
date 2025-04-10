@@ -327,7 +327,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23, y: 2.25, z: 24.025}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6484821237316024192}
@@ -345,7 +345,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894115220387684436}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &6083243205853684062
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1312,7 +1312,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 13
+  far clip plane: 100
   field of view: 42.995667
   orthographic: 0
   orthographic size: 5

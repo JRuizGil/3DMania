@@ -19,6 +19,7 @@ public class ButtonManager : MonoBehaviour
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
+        BossMenu.SetActive(false);
         if (Player != null)
         {
             lastPosition = Player.transform.position; // Guarda la posición inicial
