@@ -45,14 +45,14 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     private void Buyablebtn()
     {
-        actualMoney = inventory.Mat1;
-        if (actualMoney > price)
-        {
-            button.interactable = true;
-        }
-        else
-        {
-            button.interactable = false;    
-        }
+        //actualMoney = inventory.Mat1;
+        //if (actualMoney > price)
+        //{
+        //    button.interactable = true;
+        //}
+        //else
+        //{
+        //    button.interactable = false;    
+        //}
     }
 }
