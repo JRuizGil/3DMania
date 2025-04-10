@@ -35,12 +35,14 @@ public class DoorInteractable : MonoBehaviour
     {
         PlayerMove();
         HandleEscape();
-        if (nexttxtupgrade.lvl >= 1)
+        if(nexttxtupgrade != null)
         {
-            prfbnextDoor.SetActive(true);
-        }
+            if (nexttxtupgrade.lvl >= 1)
+            {
+                prfbnextDoor.SetActive(true);
+            }
+        }        
     }
-
     private bool IsCameraActive(Camera cam)
     {
         return cam != null && cam.gameObject.activeSelf;

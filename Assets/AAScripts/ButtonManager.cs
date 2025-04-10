@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject UpgradeMenu;
     public GameObject ConfigMenu;
     public GameObject MaterialMenu;
+    public GameObject BossMenu;
 
     Vector3 lastPosition; // Almacena la última posición del jugador
 
@@ -32,31 +33,47 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenExitMenu()
     {
-        ExitMenu.SetActive(true);
+        BossMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
+        ExitMenu.SetActive(true);
+
     }
     public void OpenUpgradeMenu()
     {
+        BossMenu.SetActive(false);
         ExitMenu.SetActive(false);
-        UpgradeMenu.SetActive(true);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
+        UpgradeMenu.SetActive(true);
+
     }
     public void OpenConfigMenu()
     {
+        BossMenu.SetActive(false);
         ExitMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
-        ConfigMenu.SetActive(true);
         MaterialMenu.SetActive(false);
+        ConfigMenu.SetActive(true);
+
     }
     public void OpenMatsMenu()
     {
         ExitMenu.SetActive(false);
+        BossMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(true);
+    }
+    public void OpenAutomatersMenu()
+    {
+        ExitMenu.SetActive(false);
+        UpgradeMenu.SetActive(false);
+        ConfigMenu.SetActive(false);
+        MaterialMenu.SetActive(false);
+        BossMenu.SetActive(true);
+
     }
     bool IsPlayerMoving()
     {
@@ -78,6 +95,7 @@ public class ButtonManager : MonoBehaviour
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
+        BossMenu.SetActive(false);
     }
     public void ExitGame()
     {

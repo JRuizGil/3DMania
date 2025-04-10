@@ -6,8 +6,6 @@ public class Inventory : MonoBehaviour
     public float Mat1;
     public Text Display;
 
-    private bool wasNegative = false; // Para rastrear si Mat1 ya ha sido negativo
-
     private void Start()
     {
         Mat1 = 0;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Door2
   m_EditorClassIdentifier: 
   timerDuration: 2
-  cooldownTime: 3
+  cooldownTime: 1
   materialMultiplier: 1.15
   price: 60
   actualearn: 60

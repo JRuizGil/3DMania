@@ -27,7 +27,7 @@ public class UpdatetxtUpgrade : MonoBehaviour
         if (eventData != null && text != null)
         {
             // Actualiza el texto con los valores actuales
-            text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{actualearn:F2}| LVL:{lvl}";
+            text.text = $"Door:{door}|   Cooldown:{Cooldown}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
         }
 
     }
@@ -39,6 +39,6 @@ public class UpdatetxtUpgrade : MonoBehaviour
     {        
         actualearn = initialrevenue * Mathf.Log(lvl + 1);
         lvl++;
-        text.text = $"Door:{door}| Cooldown:{Cooldown}s \n ActualEarn:{actualearn:F2}| LVL:{lvl}";
+        text.text = $"Door:{door}|   Cooldown:{Cooldown}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
     }
 }
