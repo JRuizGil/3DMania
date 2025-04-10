@@ -15,6 +15,7 @@ public class UpgradeButtonManager : MonoBehaviour
         inventory = GetComponent<Inventory>();
         price = updateBtnUpgrade.GetPrice();
         button = GetComponent<Button>();
+        UpdatetxtUpgrade.SumCPSandLVL();
     }
     private void Update()
     {
@@ -37,10 +38,6 @@ public class UpgradeButtonManager : MonoBehaviour
             {
                 Debug.LogWarning("No tienes suficiente dinero para comprar la mejora.");
             }
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró UpdateBtnUpgrade o Inventory en la escena.");
         }
     }
     private void Buyablebtn()

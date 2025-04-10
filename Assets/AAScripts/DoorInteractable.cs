@@ -37,7 +37,7 @@ public class DoorInteractable : MonoBehaviour
         HandleEscape();
         if(nexttxtupgrade != null)
         {
-            if (nexttxtupgrade.lvl >= 1)
+            if (nexttxtupgrade.lvl > 1)
             {
                 prfbnextDoor.SetActive(true);
             }

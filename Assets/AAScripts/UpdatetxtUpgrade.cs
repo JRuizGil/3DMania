@@ -11,34 +11,27 @@ public class UpdatetxtUpgrade : MonoBehaviour
     [SerializeField]public float lvl;
     [SerializeField]public float actualearn;
     [SerializeField]public float door;
-    [SerializeField]public float multiplier;
     [SerializeField]public float initialrevenue;
     [SerializeField]public float Cooldown;
 
     private void Start()
     {
         initialrevenue = eventData.initialrevenue;
-        Cooldown = eventData.cooldownTime;
         text = GetComponent<Text>();
-        lvl = eventData.lvl;
+        lvl = eventData.lvl + 1;
         actualearn = eventData.actualearn;
         door = eventData.door;
-        multiplier = eventData.materialMultiplier;
         if (eventData != null && text != null)
         {
             // Actualiza el texto con los valores actuales
-            text.text = $"Door:{door}|   Cooldown:{Cooldown}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
+            text.text = $"Door:{door}|   Cooldown:{eventData.cooldownTime}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
         }
 
-    }
-    private void FixedUpdate()
-    {
-        
     }
     public void SumCPSandLVL()
     {        
         actualearn = initialrevenue * Mathf.Log(lvl + 1);
         lvl++;
-        text.text = $"Door:{door}|   Cooldown:{Cooldown}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
+        text.text = $"Door:{door}|   Cooldown:{eventData.cooldownTime}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
     }
 }

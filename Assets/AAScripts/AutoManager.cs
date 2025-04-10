@@ -13,7 +13,7 @@ public class AutoManager : MonoBehaviour
 
     private void Start()
     {        
-        cooldown = ClickerEventData.cooldownTime;
+        cooldown = ClickerEventData.timerDuration;
         initialrevenue = ClickerEventData.initialrevenue;
         gameObject.SetActive(false);
     }

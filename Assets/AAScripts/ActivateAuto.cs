@@ -8,34 +8,27 @@ public class ActivateAuto : MonoBehaviour
     private float automaterprice;
     private Text text;
     public Inventory inventory;
-    public float actualmoney;
 
     void Start()
     {
-        automaterprice = ClickerEventData.AutomaterPrice;
-
         text = GetComponentInChildren<Text>();
 
         if (text != null)
         {
-            text.text = $"Price: {automaterprice}€";
+            text.text = $"Price: {ClickerEventData.AutomaterPrice}€";
         }
         else
         {
             Debug.LogWarning("No se encontró un componente Text en los hijos de este objeto.");
         }
-    }
-    private void Update()
-    {
-        actualmoney = inventory.Mat1;
-    }
+    }    
     public void BuyAutomater()
     {
          // Asegurarse de obtener el valor actualizado
 
-        if (actualmoney >= automaterprice) // Verifica si el jugador tiene suficiente dinero
+        if (inventory.Mat1 >= ClickerEventData.AutomaterPrice) // Verifica si el jugador tiene suficiente dinero
         {
-            inventory.Mat1 -= automaterprice; // Resta el dinero del inventario
+            inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario
             AutomaterPrefab.SetActive(true);  // Activa el automatizador
             Destroy(gameObject); // Destruye el objeto después de la compra
         }

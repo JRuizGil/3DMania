@@ -15,11 +15,8 @@ public class ButtonManager : MonoBehaviour
 
     void Start()
     {
-        ExitMenu.SetActive(false);
-        UpgradeMenu.SetActive(false);
-        ConfigMenu.SetActive(false);
-        MaterialMenu.SetActive(false);
-        BossMenu.SetActive(false);
+        CloseAllMenus();
+
         if (Player != null)
         {
             lastPosition = Player.transform.position; // Guarda la posición inicial
@@ -67,7 +64,7 @@ public class ButtonManager : MonoBehaviour
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(true);
     }
-    public void OpenAutomatersMenu()
+    public void OpenBossMenu()
     {
         ExitMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
