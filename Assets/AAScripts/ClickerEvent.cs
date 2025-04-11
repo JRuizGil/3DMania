@@ -14,9 +14,8 @@ public class ClickerEvent : MonoBehaviour
     public Text cooldownText;
 
     public ClickerEventData eventData;
-    public UpdatetxtUpgrade UpdatetxtUpgrade;
-    public UpdateBtnUpgrade updateBtnUpgrade;
     private Inventory inventory;
+    public UpgradeButtonManager upgradeButtonManager;
 
     private Camera prefabCamera;
     private Camera mainCamera;
@@ -50,7 +49,7 @@ public class ClickerEvent : MonoBehaviour
     private void Update()
     {
         UpdateMain();
-        Actualearn = UpdatetxtUpgrade.actualearn;
+        Actualearn = upgradeButtonManager.actualearn;
     }
     private void UpdateMain()
     {

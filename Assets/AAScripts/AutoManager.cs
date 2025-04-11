@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AutoManager : MonoBehaviour
 {
-    public UpdatetxtUpgrade UpdatetxtUpgrade;
+    public UpgradeButtonManager upgradeButtonManager;
     public Inventory Inventory;
     public ClickerEventData ClickerEventData;
 
@@ -20,8 +20,8 @@ public class AutoManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        actualearn = UpdatetxtUpgrade.actualearn; // Actualiza cps en cada frame
-        lvl = UpdatetxtUpgrade.lvl;
+        actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
+        lvl = upgradeButtonManager.lvl;
     }
     void Update()
     {

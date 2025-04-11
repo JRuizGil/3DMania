@@ -16,7 +16,7 @@ public class DoorInteractable : MonoBehaviour
 
     private ClickerEvent clickerEvent;
 
-    public UpdatetxtUpgrade nexttxtupgrade;
+    public UpgradeButtonManager upgradeButtonManager;
     public GameObject prfbnextDoor;
 
     private void Start()
@@ -35,9 +35,9 @@ public class DoorInteractable : MonoBehaviour
     {
         PlayerMove();
         HandleEscape();
-        if(nexttxtupgrade != null)
+        if(upgradeButtonManager != null)
         {
-            if (nexttxtupgrade.lvl > 1)
+            if (upgradeButtonManager.lvl > 1)
             {
                 prfbnextDoor.SetActive(true);
             }

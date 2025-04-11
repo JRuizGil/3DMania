@@ -17,7 +17,8 @@ public class BossManager : MonoBehaviour
 
     private bool BossIsOn= false;
 
-    private Text text;
+    public Text BossRemainingText;
+
 
     public Slider BossMoneySlider;
 
@@ -53,15 +54,20 @@ public class BossManager : MonoBehaviour
             float amountToSpend = Mathf.Min(generatedSinceStart, 1000f);
 
             inventory.Mat1 -= amountToSpend;
-            mat1AtBossStart += amountToSpend; 
+            mat1AtBossStart += amountToSpend;
             BossMoneySlider.value += amountToSpend;
+        }
 
-            if (BossMoneySlider.value >= BossMoneySlider.maxValue)
-            {
-                EndBoss();
-            }
+        // Mostrar cuánto falta
+        float remaining = BossMoneySlider.maxValue - BossMoneySlider.value;
+        BossRemainingText.text = $"Faltan {remaining:0}€";
+
+        if (BossMoneySlider.value >= BossMoneySlider.maxValue)
+        {
+            EndBoss();
         }
     }
+
     public void EndBoss()
     {
         inventory.Mat1 += ClickerEventData.BossEnterPrice * ClickerEventData.BossEarnMultiplier;
