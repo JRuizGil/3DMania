@@ -23,6 +23,8 @@ public class UpgradeButtonManager : MonoBehaviour
         if (ClickerEventData.door == 1)
         {
             lvl++;
+            actualmultiplier = 1;
+            initialrevenue = ClickerEventData.initialrevenue;
             SumEarnings();
             MultiplyPrice();
         }
@@ -33,10 +35,10 @@ public class UpgradeButtonManager : MonoBehaviour
         
         Debug.Log("puerta "+ ClickerEventData.door + "cuesta" + price + "ofrece"+ actualearn);
         
-        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn}  |   LVL:{lvl}";            
+        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{actualearn}  |   LVL:{lvl}";            
         
         price = ClickerEventData.price;
-        btntext.text = $"Buy:{price:F2}€";
+        btntext.text = $"Buy:{price:F1}€";
         
     }
     private void Update()
@@ -77,17 +79,26 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            btntext.text = $"Buy:{price:F2}€";
+            btntext.text = $"Buy:{price:F1}€";
         }
     }
     public void SumEarnings()
     { 
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn}|   LVL:{lvl}";        
+        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{actualearn}|   LVL:{lvl}";        
     }
     public void ChangeMultiplyEarn()
     {
+        if(lvl >= 200)
+        {
+            actualmultiplier = 64;
+
+        }
+        if (lvl >= 150)
+        {
+            actualmultiplier = 32;
+        }
         if (lvl >= 100)
         {
             actualmultiplier = 16;

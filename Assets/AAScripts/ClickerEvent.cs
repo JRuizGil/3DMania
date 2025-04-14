@@ -124,7 +124,7 @@ public class ClickerEvent : MonoBehaviour
         gameActive = false;
         if (timer <= 0f)
         {
-            float totalMaterials = clickCount + upgradeButtonManager.actualearn;
+            float totalMaterials = (clickCount * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
             inventory.AddMaterials(totalMaterials);
         }
         else

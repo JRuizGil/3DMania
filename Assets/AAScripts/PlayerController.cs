@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem clickEffect;
     [SerializeField] LayerMask clickableLayers;
 
-    float lookRotationSpeed = 8f;
+    public float lookRotationSpeed = 25f;
 
     public DoorInteractable currentInteractable;
     public Transform cameraTransform;
