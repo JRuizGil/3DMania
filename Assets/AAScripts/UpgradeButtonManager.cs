@@ -26,6 +26,7 @@ public class UpgradeButtonManager : MonoBehaviour
             SumEarnings();
             MultiplyPrice();
         }
+        door = ClickerEventData.door;
         initialrevenue = ClickerEventData.initialrevenue;
         button.enabled = true;
         actualearn = ClickerEventData.initialrevenue;
@@ -73,7 +74,7 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     public void MultiplyPrice()
     {
-        price *= Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
+        price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
             btntext.text = $"Buy:{price:F2}€";

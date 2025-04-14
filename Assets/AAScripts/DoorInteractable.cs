@@ -78,8 +78,8 @@ public class DoorInteractable : MonoBehaviour
         if (isMoving)
         {
             isMoving = false;
-            prefabCamera?.gameObject.SetActive(false);
-            mainCamera?.gameObject.SetActive(true);
+            prefabCamera.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
             controller.isInteractingWithDoor = false; //  Habilita nuevamente el movimiento/interacción
         }
     }
@@ -94,8 +94,8 @@ public class DoorInteractable : MonoBehaviour
             if (Vector3.Distance(player.position, targetPosition.position) < 0.4f)
             {
                 isMoving = false;
-                mainCamera?.gameObject.SetActive(false);
-                prefabCamera?.gameObject.SetActive(true);
+                mainCamera.gameObject.SetActive(false);
+                prefabCamera.gameObject.SetActive(true);
                 clickerEvent?.UpdateCooldownText();
             }
         }
@@ -105,8 +105,8 @@ public class DoorInteractable : MonoBehaviour
     {
         if (IsCameraActive(prefabCamera) && Input.GetKeyDown(KeyCode.Escape))
         {
-            prefabCamera?.gameObject.SetActive(false);
-            mainCamera?.gameObject.SetActive(true);
+            prefabCamera.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
             controller.isInteractingWithDoor = false; //  Reactiva el movimiento al salir
         }
     }

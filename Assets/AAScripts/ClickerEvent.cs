@@ -122,8 +122,15 @@ public class ClickerEvent : MonoBehaviour
     {
         animator.SetBool("Open", false);
         gameActive = false;
-        float totalMaterials = clickCount + upgradeButtonManager.actualearn;
-        inventory.AddMaterials(totalMaterials);
+        if (timer <= 0f)
+        {
+            float totalMaterials = clickCount + upgradeButtonManager.actualearn;
+            inventory.AddMaterials(totalMaterials);
+        }
+        else
+        {
+            Debug.Log("El juego terminó antes de que se agotara el tiempo. No se otorgan materiales.");
+        }
         cooldownTimer = eventData.cooldownTime;
         StartCoroutine(CooldownRoutine());
     }
