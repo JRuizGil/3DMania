@@ -21,7 +21,6 @@ public class ClickerEvent : MonoBehaviour
     private Camera mainCamera;
     private bool wasCameraInactive = false;
     private Animator animator;
-    private float Actualearn;
     private Transform Fantasma;
     private Vector3 escalaOriginal;
     private void Start()
@@ -30,7 +29,6 @@ public class ClickerEvent : MonoBehaviour
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(false);
-        Actualearn = eventData.initialrevenue;
         Fantasma = transform.Find("Fantasma");
 
         // Guardar la escala original de Fantasma
@@ -49,7 +47,7 @@ public class ClickerEvent : MonoBehaviour
     private void Update()
     {
         UpdateMain();
-        Actualearn = upgradeButtonManager.actualearn;
+        
     }
     private void UpdateMain()
     {
@@ -124,7 +122,7 @@ public class ClickerEvent : MonoBehaviour
     {
         animator.SetBool("Open", false);
         gameActive = false;
-        float totalMaterials = clickCount + Actualearn;
+        float totalMaterials = clickCount + upgradeButtonManager.actualearn;
         inventory.AddMaterials(totalMaterials);
         cooldownTimer = eventData.cooldownTime;
         StartCoroutine(CooldownRoutine());

@@ -1959,6 +1959,10 @@ PrefabInstance:
       propertyPath: nexttxtupgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2083491061}
     - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: eventData
       value: 
@@ -1979,6 +1983,10 @@ PrefabInstance:
       propertyPath: updateBtnUpgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2083491061}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6196451533337266667, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
@@ -7808,6 +7816,14 @@ PrefabInstance:
       propertyPath: nexttxtupgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 1089955911}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: NextDoorButtonManager
+      value: 
+      objectReference: {fileID: 2104250482}
     - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: eventData
       value: 
@@ -7828,6 +7844,10 @@ PrefabInstance:
       propertyPath: updateBtnUpgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 1089955911}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6196451533337266667, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
@@ -10307,6 +10327,14 @@ PrefabInstance:
       propertyPath: nexttxtupgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 968395587}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: NextDoorButtonManager
+      value: 
+      objectReference: {fileID: 1089955911}
     - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: eventData
       value: 
@@ -10327,6 +10355,10 @@ PrefabInstance:
       propertyPath: updateBtnUpgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 968395587}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6196451533337266667, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
@@ -12377,6 +12409,14 @@ PrefabInstance:
       propertyPath: nexttxtupgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2104250482}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: NextDoorButtonManager
+      value: 
+      objectReference: {fileID: 2083491061}
     - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: eventData
       value: 
@@ -12397,6 +12437,10 @@ PrefabInstance:
       propertyPath: updateBtnUpgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2104250482}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6196451533337266667, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
@@ -18378,7 +18422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a01f9e2a101b4395e83ac3cd381f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButtonManager: {fileID: 0}
+  upgradeButtonManager: {fileID: 1089955911}
   Inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: fa67ce286f25f5b41826a4dc9bc11747, type: 2}
 --- !u!4 &8954800358159041621 stripped
@@ -18398,7 +18442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a01f9e2a101b4395e83ac3cd381f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButtonManager: {fileID: 0}
+  upgradeButtonManager: {fileID: 2083491061}
   Inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 04cad632e6455e14698b5eb2c687f889, type: 2}
 --- !u!4 &8954800358263051531 stripped
@@ -18418,7 +18462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a01f9e2a101b4395e83ac3cd381f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButtonManager: {fileID: 0}
+  upgradeButtonManager: {fileID: 2104250482}
   Inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 83419e27805e4f34880f2ab739cafd8a, type: 2}
 --- !u!1 &8954800358446435204 stripped
@@ -18443,7 +18487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a01f9e2a101b4395e83ac3cd381f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButtonManager: {fileID: 0}
+  upgradeButtonManager: {fileID: 2077599594}
   Inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: cb5ee152530023a439cc8b7aba265d73, type: 2}
 --- !u!4 &8954800359476578204 stripped
@@ -18463,7 +18507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a01f9e2a101b4395e83ac3cd381f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButtonManager: {fileID: 0}
+  upgradeButtonManager: {fileID: 968395587}
   Inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 3b85e7fb2c50d094e8f597f1e3db708c, type: 2}
 --- !u!1001 &8964592133021353301
@@ -18530,6 +18574,14 @@ PrefabInstance:
       propertyPath: nexttxtupgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2077599594}
+    - target: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: NextDoorButtonManager
+      value: 
+      objectReference: {fileID: 968395587}
     - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: eventData
       value: 
@@ -18550,6 +18602,10 @@ PrefabInstance:
       propertyPath: updateBtnUpgrade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+      propertyPath: upgradeButtonManager
+      value: 
+      objectReference: {fileID: 2077599594}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6196451533337266667, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}

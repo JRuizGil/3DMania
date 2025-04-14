@@ -5,9 +5,6 @@ public class UpgradeButtonManager : MonoBehaviour
 {
     public Inventory inventory;
     public ClickerEventData ClickerEventData;
-
-    
-
     public Button button;
     public Text btntext;
     public Text txt;
@@ -18,23 +15,32 @@ public class UpgradeButtonManager : MonoBehaviour
     [SerializeField] public float initialrevenue;
     [SerializeField] public float Cooldown;
     [SerializeField] private float price;
+    [SerializeField] private float actualmultiplier;
 
     private void Start()
     {
-        if (ClickerEventData != null && btntext != null)
-        {
-            // Actualiza el texto con los valores actuales
-            txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
-        }
         lvl = 0;
-        btntext.text = $"Buy:{price:F2}€";
+        if (ClickerEventData.door == 1)
+        {
+            lvl++;
+            SumEarnings();
+            MultiplyPrice();
+        }
+        initialrevenue = ClickerEventData.initialrevenue;
+        button.enabled = true;
+        actualearn = ClickerEventData.initialrevenue;
+        
+        Debug.Log("puerta "+ ClickerEventData.door + "cuesta" + price + "ofrece"+ actualearn);
+        
+        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn}  |   LVL:{lvl}";            
+        
         price = ClickerEventData.price;
-        SumCPSandLVL();
-        button.interactable = false;
+        btntext.text = $"Buy:{price:F2}€";
+        
     }
     private void Update()
     {
-        Buyablebtn();
+        //Buyablebtn();
     }
     public void BuyUpgrade()
     {     
@@ -43,7 +49,8 @@ public class UpgradeButtonManager : MonoBehaviour
             if (inventory.Mat1 > price) // Verifica si tiene suficiente dinero
             {
                 inventory.Mat1 -= price; // Resta el precio de la mejora
-                SumCPSandLVL();
+                lvl++;
+                SumEarnings();
                 MultiplyPrice(); // Aumenta el precio para la siguiente compra                
                 
             }
@@ -72,10 +79,34 @@ public class UpgradeButtonManager : MonoBehaviour
             btntext.text = $"Buy:{price:F2}€";
         }
     }
-    public void SumCPSandLVL()
-    {
-        actualearn = initialrevenue * Mathf.Log(lvl + 1);
-        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn:F2}|   LVL:{lvl}";
-        lvl++;
+    public void SumEarnings()
+    { 
+        ChangeMultiplyEarn();
+        actualearn = (initialrevenue * lvl) * actualmultiplier;
+        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.cooldownTime}s \nActualEarn:{actualearn}|   LVL:{lvl}";        
     }
+    public void ChangeMultiplyEarn()
+    {
+        if (lvl >= 100)
+        {
+            actualmultiplier = 16;
+        }
+        else if (lvl >= 50)
+        {
+            actualmultiplier = 8;
+        }
+        else if (lvl >= 25)
+        {
+            actualmultiplier = 4;
+        }
+        else if (lvl >= 10)
+        {
+            actualmultiplier = 2;
+        }
+        else
+        {
+            actualmultiplier = 1;
+        }
+    }
+
 }
