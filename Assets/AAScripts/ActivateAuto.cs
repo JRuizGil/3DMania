@@ -25,7 +25,6 @@ public class ActivateAuto : MonoBehaviour
     public void BuyAutomater()
     {
          // Asegurarse de obtener el valor actualizado
-
         if (inventory.Mat1 >= ClickerEventData.AutomaterPrice) // Verifica si el jugador tiene suficiente dinero
         {
             inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario

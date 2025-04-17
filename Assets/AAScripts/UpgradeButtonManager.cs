@@ -43,7 +43,7 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     private void Update()
     {
-        //Buyablebtn();
+        Buyablebtn();
     }
     public void BuyUpgrade()
     {     
@@ -65,14 +65,10 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     private void Buyablebtn()
     {        
-        //if (inventory.Mat1 > price)
-        //{
-        //    button.interactable = true;
-        //}
-        //else
-        //{
-        //    button.interactable = false;    
-        //}
+        if (inventory.Mat1 > price)
+        {
+            button.interactable = true;
+        }
     }
     public void MultiplyPrice()
     {
@@ -93,7 +89,6 @@ public class UpgradeButtonManager : MonoBehaviour
         if(lvl >= 200)
         {
             actualmultiplier = 64;
-
         }
         if (lvl >= 150)
         {

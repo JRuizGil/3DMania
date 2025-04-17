@@ -87,7 +87,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _BaseGradientPower: 3
+    - _BaseGradientPower: 1
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -98,12 +98,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlitterOffset: 0.75
+    - _GlitterOffset: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseRotation: 0
+    - _NoiseRotation: 0.3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -118,8 +118,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor1: {r: 0.12156863, g: 0.007843138, b: 0.2627451, a: 1}
-    - _BaseColor2: {r: 0.103462085, g: 0.31465718, b: 0.7075472, a: 1}
+    - _BaseColor1: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor2: {r: 0.21509439, g: 0.09652895, b: 0.095372036, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}

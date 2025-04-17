@@ -10,24 +10,18 @@ public class ButtonManager : MonoBehaviour
     public GameObject ConfigMenu;
     public GameObject MaterialMenu;
     public GameObject BossMenu;
-
-    Vector3 lastPosition; // Almacena la última posición del jugador
+    private bool IsmenuOpened;
 
     void Start()
     {
         CloseAllMenus();
-
-        if (Player != null)
-        {
-            lastPosition = Player.transform.position; // Guarda la posición inicial
-        }
     }    
     void Update()
-    {
-        if (IsPlayerMoving())
+    {        
+        if (IsmenuOpened && Input.GetKey(KeyCode.Escape))
         {
             CloseAllMenus();
-        }
+        }        
     }
     public void OpenExitMenu()
     {
@@ -36,7 +30,7 @@ public class ButtonManager : MonoBehaviour
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
         ExitMenu.SetActive(true);
-
+        IsmenuOpened = true;
     }
     public void OpenUpgradeMenu()
     {
@@ -45,7 +39,7 @@ public class ButtonManager : MonoBehaviour
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
         UpgradeMenu.SetActive(true);
-
+        IsmenuOpened = true;
     }
     public void OpenConfigMenu()
     {
@@ -54,7 +48,7 @@ public class ButtonManager : MonoBehaviour
         UpgradeMenu.SetActive(false);
         MaterialMenu.SetActive(false);
         ConfigMenu.SetActive(true);
-
+        IsmenuOpened = true;
     }
     public void OpenMatsMenu()
     {
@@ -63,6 +57,7 @@ public class ButtonManager : MonoBehaviour
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(true);
+        IsmenuOpened = true;
     }
     public void OpenBossMenu()
     {
@@ -71,29 +66,17 @@ public class ButtonManager : MonoBehaviour
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
         BossMenu.SetActive(true);
-
+        IsmenuOpened = true;
     }
-    bool IsPlayerMoving()
-    {
-        if (Player == null) return false;
-
-        Vector3 currentPosition = Player.transform.position;
-        
-        if (currentPosition != lastPosition)
-        {
-            lastPosition = currentPosition; // Actualiza la última posición
-            return true;
-        }
-
-        return false;
-    }
+    
     public void CloseAllMenus()
-    {
+    {        
         ExitMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
         MaterialMenu.SetActive(false);
         BossMenu.SetActive(false);
+        IsmenuOpened = false;
     }
     public void ExitGame()
     {

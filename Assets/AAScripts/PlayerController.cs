@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem clickEffect;
     [SerializeField] LayerMask clickableLayers;
 
-    public float lookRotationSpeed = 25f;
+    public float lookRotationSpeed = 50f;
 
     public DoorInteractable currentInteractable;
     public Transform cameraTransform;
@@ -39,8 +39,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (IsMainCameraActive() && !isInteractingWithDoor) //  Evita que el personaje se mueva si interactúa con la puerta
-        {
-            FaceTarget();
+        {            
             HandleClick();
         }
     }
@@ -100,22 +99,10 @@ public class PlayerController : MonoBehaviour
         agent.isStopped = true;
         agent.ResetPath();
     }
-
     public bool IsNavMeshAgentActive()
     {
         return !agent.isStopped && agent.hasPath;
     }
-
-    void FaceTarget()
-    {
-        if (!agent.isStopped && agent.velocity.sqrMagnitude > 0.1f)
-        {
-            Vector3 direction = (agent.destination - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotationSpeed);
-        }
-    }
-
     public void HandleClick()
     {
         if (!IsMainCameraActive() || isInteractingWithDoor) return; //  Bloquea interacciones si está en una puerta

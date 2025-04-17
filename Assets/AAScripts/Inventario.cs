@@ -10,7 +10,6 @@ public class Inventory : MonoBehaviour
     {
         Mat1 = 0;
     }
-
     void Update()
     {
         // Actualizar la UI para mostrar los materiales actuales con formato adaptativo

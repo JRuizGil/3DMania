@@ -11,9 +11,9 @@ public class ConfigScript : MonoBehaviour
     public Toggle muteToggle;
 
     private bool isMuted = false;
-
     private void Start()
     {
+        isMuted = false;
         // Cargar valores guardados
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
@@ -23,7 +23,7 @@ public class ConfigScript : MonoBehaviour
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
         UpdateMuteState();
-    }
+    }    
 
     public void SetMusicVolume(float volume)
     {

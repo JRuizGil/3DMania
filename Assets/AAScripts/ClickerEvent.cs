@@ -16,13 +16,14 @@ public class ClickerEvent : MonoBehaviour
     public ClickerEventData eventData;
     private Inventory inventory;
     public UpgradeButtonManager upgradeButtonManager;
-
+    public AudioSource audioSource;
     private Camera prefabCamera;
     private Camera mainCamera;
     private bool wasCameraInactive = false;
     private Animator animator;
     private Transform Fantasma;
     private Vector3 escalaOriginal;
+    
     private void Start()
     {
         prefabCamera = GetComponentInChildren<Camera>(true);
@@ -30,7 +31,7 @@ public class ClickerEvent : MonoBehaviour
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(false);
         Fantasma = transform.Find("Fantasma");
-
+        audioSource = GetComponent<AudioSource>();
         // Guardar la escala original de Fantasma
         if (Fantasma != null)
         {
@@ -111,6 +112,7 @@ public class ClickerEvent : MonoBehaviour
     private void StartGame()
     {
         animator.SetBool("Open", true);
+        audioSource.Play();
         gameActive = true;
         timer = eventData.timerDuration;
         clickCount = 0;
@@ -121,6 +123,7 @@ public class ClickerEvent : MonoBehaviour
     private void EndGame()
     {
         animator.SetBool("Open", false);
+        audioSource.Play();
         gameActive = false;
         if (timer <= 0f)
         {

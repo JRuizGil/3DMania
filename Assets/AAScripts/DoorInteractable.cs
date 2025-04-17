@@ -54,17 +54,8 @@ public class DoorInteractable : MonoBehaviour
     {
         if (!IsCameraActive(mainCamera)) return;
 
-        if (controller != null && Vector3.Distance(player.position, targetPosition.position) > 0.1f)
-        {
-            var childTransform = transform.GetChild(0);
-            Vector3 originalScale = childTransform.localScale;
-
-            LeanTween.scale(childTransform.gameObject, Vector3.one * 0.8f, 0.05f)
-                .setEase(LeanTweenType.easeOutQuad)
-                .setOnComplete(() => {
-                    LeanTween.scale(childTransform.gameObject, originalScale, 0.05f);
-                });
-
+        if (controller != null && Vector3.Distance(player.position, targetPosition.position) > 0.3f)
+        {           
             CancelCurrentMovement();
             controller.StopNavMeshAgent();
             controller.currentInteractable = this;
@@ -89,9 +80,16 @@ public class DoorInteractable : MonoBehaviour
         if (isMoving)
         {
             float step = moveSpeed * Time.deltaTime;
-            player.position = Vector3.Lerp(player.position, targetPosition.position, step);
 
-            if (Vector3.Distance(player.position, targetPosition.position) < 0.4f)
+            // Mantener el Y actual del jugador
+            Vector3 targetPosXZ = new Vector3(targetPosition.position.x, player.position.y, targetPosition.position.z);
+            player.position = Vector3.Lerp(player.position, targetPosXZ, step);
+
+            // Rotación solo en el eje Y (ignorar inclinaciones)
+            Quaternion targetRot = Quaternion.Euler(0, targetPosition.rotation.eulerAngles.y, 0);
+            player.rotation = Quaternion.Lerp(player.rotation, targetRot, step);
+
+            if (Vector3.Distance(player.position, targetPosXZ) <= 0.3f)
             {
                 isMoving = false;
                 mainCamera.gameObject.SetActive(false);
@@ -100,6 +98,9 @@ public class DoorInteractable : MonoBehaviour
             }
         }
     }
+
+
+
 
     private void HandleEscape()
     {
