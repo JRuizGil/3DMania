@@ -11,21 +11,21 @@ public class BossManager : MonoBehaviour
 
     public GameObject BossScene;
 
-    private float BossPrice;
     private float mat1AtBossStart;
 
-
-    private bool BossIsOn= false;
+    private bool BossIsOn = false;
 
     public Text BossRemainingText;
 
-
     public Slider BossMoneySlider;
+
+    private float bossTimer; // Nuevo: temporizador
 
     private void Start()
     {
-        
+
     }
+
     private void Update()
     {
         if (BossIsOn)
@@ -33,20 +33,25 @@ public class BossManager : MonoBehaviour
             StartBoss();
         }
     }
+
     public void BuyBossStart()
-    {        
+    {
         if (inventory.Mat1 >= ClickerEventData.BossEnterPrice)
         {
             BossMoneySlider.gameObject.SetActive(true);
             inventory.Mat1 -= ClickerEventData.BossEnterPrice;
-            mat1AtBossStart = inventory.Mat1; 
+            mat1AtBossStart = inventory.Mat1;
             buttonManager.CloseAllMenus();
             BossIsOn = true;
-        }        
+            bossTimer = 0f; // Resetear el tiempo al iniciar
+            BossScene.SetActive(true); // Mostrar la escena del boss si no estaba activa
+        }
     }
 
     public void StartBoss()
     {
+        bossTimer += Time.deltaTime; // Aumentar el temporizador cada frame
+
         float generatedSinceStart = inventory.Mat1 - mat1AtBossStart;
 
         if (generatedSinceStart > 0)
@@ -62,19 +67,34 @@ public class BossManager : MonoBehaviour
         float remaining = BossMoneySlider.maxValue - BossMoneySlider.value;
         BossRemainingText.text = $"Faltan {remaining:0}€";
 
+        // Si completó el boss
         if (BossMoneySlider.value >= BossMoneySlider.maxValue)
         {
-            EndBoss();
+            EndBoss(success: true);
+        }
+        // Si se acaba el tiempo y no completó el boss
+        else if (bossTimer >= ClickerEventData.BossCountdownTime)
+        {
+            EndBoss(success: false);
         }
     }
 
-    public void EndBoss()
+    public void EndBoss(bool success)
     {
-        inventory.Mat1 += ClickerEventData.BossEnterPrice * ClickerEventData.BossEarnMultiplier;
+        if (success)
+        {
+            inventory.Mat1 += ClickerEventData.BossEnterPrice * ClickerEventData.BossEarnMultiplier;
+            Debug.Log("¡Boss terminado exitosamente!");
+        }
+        else
+        {
+            inventory.Mat1 += ClickerEventData.BossEnterPrice / 2f;
+            Debug.Log("Boss fallido, se devuelve la mitad.");
+        }
+
         buttonManager.OpenBossMenu();
         BossMoneySlider.value = 0;
         BossScene.SetActive(false);
-        Debug.Log("¡Boss terminado!");
         BossIsOn = false;
     }
 }

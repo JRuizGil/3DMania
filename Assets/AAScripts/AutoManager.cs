@@ -1,40 +1,50 @@
 using UnityEngine;
 
+using System.Collections;
 public class AutoManager : MonoBehaviour
 {
     public UpgradeButtonManager upgradeButtonManager;
     public Inventory Inventory;
     public ClickerEventData ClickerEventData;
+    public Animator animator;
 
     private float actualearn;
-    private float cooldown;
+    private float cooldown = 1f;
     private float lvl;
     private float initialrevenue;
 
-    private void Start()
-    {        
-        cooldown = ClickerEventData.timerDuration;
-        initialrevenue = ClickerEventData.initialrevenue;
+    private void Awake()
+    {
         gameObject.SetActive(false);
     }
-
     private void FixedUpdate()
     {
         actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
         lvl = upgradeButtonManager.lvl;
     }
-    void Update()
+    private void Start()
     {
-        if (!IsInvoking("Automatizar"))
+        StartCoroutine(AutoLoop());
+    }
+
+    private IEnumerator AutoLoop()
+    {
+        yield return new WaitForSeconds(ClickerEventData.timerDuration + 1); // Pequeño delay inicial
+        while (true)
         {
-            InvokeRepeating("Automatizar", cooldown, cooldown);
+            yield return AutomatizarCoroutine();
+            yield return new WaitForSeconds(cooldown); // Espera entre automatizaciones
         }
     }
 
-    public void Automatizar()
+    private IEnumerator AutomatizarCoroutine()
     {
+        animator.SetBool("Open", true);
+        yield return new WaitForSeconds(ClickerEventData.timerDuration);
+
         int totalMaterials = Mathf.RoundToInt((float)actualearn);
-        Inventory.AddMaterials(totalMaterials); // Añade cps al inventario cada llamada
+        Inventory.AddMaterials(totalMaterials);
+
+        animator.SetBool("Open", false);
     }
 }
-

@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13c71e4d36d9af246937a9412b06a988, type: 3}
-  m_Name: Door5
+  m_Name: Door1-3
   m_EditorClassIdentifier: 
-  timerDuration: 8
+  timerDuration: 3
   cooldownTime: 1
-  materialMultiplier: 1.12
-  price: 103680
-  actualearn: 51840
-  door: 5
+  materialMultiplier: 1.14
+  price: 720
+  actualearn: 540
+  door: 1.3
   lvl: 0
-  initialrevenue: 51840
-  AutoMatePrefab: {fileID: 1137053292659747652, guid: 9f08210a337b0ed43ada8abed3a5b753, type: 3}
-  AutomaterPrice: 10000000
+  initialrevenue: 540
+  AutoMatePrefab: {fileID: 8072376958491875060, guid: d4996c10a1679ee48b1fd107cc646928, type: 3}
+  AutomaterPrice: 100000
+  BossCountdownTime: 0
+  HaveToEarn: 0
+  BossEarnMultiplier: 0
+  BossEnterPrice: 0

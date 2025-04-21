@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ClickerEvent : MonoBehaviour
 {
-    private bool gameActive = false;
+    public bool gameActive = false;
     private float timer;
     private int clickCount = 0;
     private float cooldownTimer = 0f;
@@ -29,7 +29,7 @@ public class ClickerEvent : MonoBehaviour
         prefabCamera = GetComponentInChildren<Camera>(true);
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
-        PanelTxt?.SetActive(false);
+        PanelTxt?.SetActive(true);
         Fantasma = transform.Find("Fantasma");
         audioSource = GetComponent<AudioSource>();
         // Guardar la escala original de Fantasma
@@ -39,7 +39,7 @@ public class ClickerEvent : MonoBehaviour
         }
 
         // Buscar el Animator en el hijo llamado "Estruct"
-        Transform child = transform.Find("Estruct");
+        Transform child = transform.Find("INV");
         if (child != null)
         {
             animator = child.GetComponent<Animator>();
@@ -47,8 +47,7 @@ public class ClickerEvent : MonoBehaviour
     }
     private void Update()
     {
-        UpdateMain();
-        
+        UpdateMain();        
     }
     private void UpdateMain()
     {
@@ -57,13 +56,11 @@ public class ClickerEvent : MonoBehaviour
         if (!isPrefabCameraActive)
         {
             if (gameActive) EndGame();
-            PanelTxt?.SetActive(false);
             wasCameraInactive = true;
             return;
         }
         else if (wasCameraInactive)
         {
-            PanelTxt?.SetActive(true);
             cooldownText?.gameObject.SetActive(true);
             timerText?.gameObject.SetActive(true);
             wasCameraInactive = false;
@@ -109,18 +106,17 @@ public class ClickerEvent : MonoBehaviour
         }
         cooldownText.gameObject.SetActive(false);
     }
-    private void StartGame()
+    public void StartGame()
     {
         animator.SetBool("Open", true);
         audioSource.Play();
         gameActive = true;
         timer = eventData.timerDuration;
         clickCount = 0;
-        PanelTxt?.SetActive(true);
         UpdateUIText(timerText, $"Tiempo restante: {timer:F1} s");
 
     }
-    private void EndGame()
+    public void EndGame()
     {
         animator.SetBool("Open", false);
         audioSource.Play();
