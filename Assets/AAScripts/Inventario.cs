@@ -12,13 +12,22 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        // Actualizar la UI para mostrar los materiales actuales con formato adaptativo
-        Display.text = $"Dinero: {Mat1:F2}€";
+        Display.text = $"Dinero: {FormatNumber(Mat1)}Bu";
     }
+
+    string FormatNumber(float number)
+    {
+        if (number >= 10000000f)
+            return number.ToString("E2");
+        else
+            return number.ToString("F2");
+    }
+
+
     public void AddMaterials(float totalMaterials)
     {
         Mat1 += totalMaterials;
-        Debug.Log($"Dinero: {Mat1:F2}€");
+        Debug.Log($"{Mat1:F2}Bu");
     }
     public float GetMat1()
     {

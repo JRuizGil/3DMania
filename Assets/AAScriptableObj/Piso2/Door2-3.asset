@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDuration: 34
   cooldownTime: 1
-  materialMultiplier: 1.07
-  price: 4
+  materialMultiplier: 1.09
+  price: 212000000
   actualearn: 1
   door: 2.3
   lvl: 0

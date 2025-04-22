@@ -38,7 +38,7 @@ public class UpgradeButtonManager : MonoBehaviour
         txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{actualearn}  |   LVL:{lvl}";            
         
         price = ClickerEventData.price;
-        btntext.text = $"Buy:{price:F1}€";
+        btntext.text = $"Buy:{price:F1}Bu";
         
     }
     private void Update()
@@ -75,7 +75,7 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            btntext.text = $"Buy:{price:F1}€";
+            btntext.text = $"Buy:{price:F1}Bu";
         }
     }
     public void SumEarnings()

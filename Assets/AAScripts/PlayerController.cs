@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public DoorInteractable currentInteractable;
     public Transform cameraTransform;
+    public FloorManager floorManager;
 
     public bool isInteractingWithDoor = false; //  Nueva variable para bloquear movimiento/interacción
 
@@ -42,6 +43,10 @@ public class PlayerController : MonoBehaviour
         {            
             HandleClick();
         }
+    }
+    private void FixedUpdate()
+    {
+        Floormanagement();
     }
 
     void AssignInputs()
@@ -138,5 +143,22 @@ public class PlayerController : MonoBehaviour
     {
         Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
         return activeCamera != null && activeCamera.tag == "MainCamera";
+    }
+    private void Floormanagement()
+    {
+        if (floorManager.currentFloorIndex == 0)
+        {
+            gameObject.transform.position = new Vector3(
+            gameObject.transform.position.x,
+            gameObject.transform.position.y + 4,
+            gameObject.transform.position.z);
+        }
+        if (floorManager.currentFloorIndex == 1)
+        {
+            gameObject.transform.position = new Vector3(
+            gameObject.transform.position.x,
+            gameObject.transform.position.y -4,
+            gameObject.transform.position.z);
+        }
     }
 }

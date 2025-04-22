@@ -3,26 +3,27 @@ using UnityEngine;
 public class FloorManager : MonoBehaviour
 {
     public Camera Maincamera;
+    public GameObject Player;
     public Transform[] camPos;
-
-    private int currentFloorIndex = 0;
-    private Vector3 targetPosition; // Nuevo: posición objetivo
+    public Transform[] playerposy;
+    public int currentFloorIndex = 0;
+    private Vector3 camtargetPosition; // Nuevo: posición objetivo
     public float moveSpeed = 5f; // Velocidad de movimiento
 
     private void Start()
     {
         if (camPos.Length > 0)
         {
-            targetPosition = camPos[0].transform.position;
-            Maincamera.transform.position = targetPosition;
+            camtargetPosition = camPos[0].transform.position;
+            Maincamera.transform.position = camtargetPosition;
         }
     }
 
     private void Update()
     {
         // Movimiento suave cada frame hacia el objetivo
-        Maincamera.transform.position = Vector3.Lerp(Maincamera.transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
+        Maincamera.transform.position = Vector3.Lerp(Maincamera.transform.position, camtargetPosition, moveSpeed * Time.deltaTime);
+        
         // Opcional: controles de prueba
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -48,12 +49,13 @@ public class FloorManager : MonoBehaviour
         if (currentFloorIndex > 0)
         {
             currentFloorIndex--;
+
             MoveCameraToCurrentFloor();
         }
     }
 
     private void MoveCameraToCurrentFloor()
     {
-        targetPosition = camPos[currentFloorIndex].position; // Solo cambiamos el destino, la Update se encarga del lerp
+        camtargetPosition = camPos[currentFloorIndex].position; // Solo cambiamos el destino, la Update se encarga del lerp
     }
 }
