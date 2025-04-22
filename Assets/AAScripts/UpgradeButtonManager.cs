@@ -10,11 +10,11 @@ public class UpgradeButtonManager : MonoBehaviour
     public Text txt;
 
     [SerializeField] public float lvl;
-    [SerializeField] public float actualearn;
+    [SerializeField] public double actualearn;
     [SerializeField] public float door;
-    [SerializeField] public float initialrevenue;
+    [SerializeField] public double initialrevenue;
     [SerializeField] public float Cooldown;
-    [SerializeField] private float price;
+    [SerializeField] private double price;
     [SerializeField] private float actualmultiplier;
 
     private void Start()
@@ -35,7 +35,7 @@ public class UpgradeButtonManager : MonoBehaviour
         
         Debug.Log("puerta "+ ClickerEventData.door + "cuesta" + price + "ofrece"+ actualearn);
         
-        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{actualearn}  |   LVL:{lvl}";            
+        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}  |   LVL:{lvl}";            
         
         price = ClickerEventData.price;
         btntext.text = $"Buy:{price:F1}Bu";
@@ -75,14 +75,23 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            btntext.text = $"Buy:{price:F1}Bu";
+            if (price >= 10000000f)
+            {
+                btntext.text = $"Buy: {FormatPrice(price)}Bu";
+
+            }
+            else
+            {
+                btntext.text = $"Buy: {FormatPrice(price)}Bu";
+
+            }
         }
     }
     public void SumEarnings()
     { 
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{actualearn}|   LVL:{lvl}";        
+        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}|   LVL:{lvl}";        
     }
     public void ChangeMultiplyEarn()
     {
@@ -114,6 +123,20 @@ public class UpgradeButtonManager : MonoBehaviour
         {
             actualmultiplier = 1;
         }
+    }
+    string FormatPrice(double value)
+    {
+        string[] suffixes = { "", " K", " M", " B", " T", " Qa", " Qi", " Sx", " Sp", " Oc", " No", " Dc", " Ud", " Dd", " Td", " Qad", " Qid", " Sxd", " Spd", " Ocd", " Nod" };
+
+        int suffixIndex = 0;
+
+        while (value >= 1000 && suffixIndex < suffixes.Length - 1)
+        {
+            value /= 1000;
+            suffixIndex++;
+        }
+
+        return value.ToString("F2") + suffixes[suffixIndex];
     }
 
 }

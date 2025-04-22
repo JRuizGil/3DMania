@@ -37,22 +37,40 @@ public class FloorManager : MonoBehaviour
 
     public void FloorUp()
     {
-        if (currentFloorIndex < camPos.Length - 1)
+        int originalIndex = currentFloorIndex;
+
+        // Buscar el siguiente piso activo
+        do
         {
             currentFloorIndex++;
-            MoveCameraToCurrentFloor();
-        }
+            if (currentFloorIndex >= camPos.Length)
+            {
+                currentFloorIndex = originalIndex; // Volver al original si no hay más
+                return;
+            }
+        } while (!camPos[currentFloorIndex].gameObject.activeSelf);
+
+        MoveCameraToCurrentFloor();
     }
 
     public void FloorDown()
     {
-        if (currentFloorIndex > 0)
+        int originalIndex = currentFloorIndex;
+
+        // Buscar el piso activo anterior
+        do
         {
             currentFloorIndex--;
+            if (currentFloorIndex < 0)
+            {
+                currentFloorIndex = originalIndex; // Volver al original si no hay más
+                return;
+            }
+        } while (!camPos[currentFloorIndex].gameObject.activeSelf);
 
-            MoveCameraToCurrentFloor();
-        }
+        MoveCameraToCurrentFloor();
     }
+
 
     private void MoveCameraToCurrentFloor()
     {

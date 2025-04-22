@@ -92,7 +92,7 @@ public class ClickerEvent : MonoBehaviour
         if (gameActive)
         {
             timer -= Time.deltaTime;
-            UpdateUIText(timerText, $"Tiempo restante: {timer:F1} s");
+            UpdateUIText(timerText, $"Earn time: {timer:F1} s");
             if (timer <= 0) EndGame();
         }
     }
@@ -113,7 +113,7 @@ public class ClickerEvent : MonoBehaviour
         gameActive = true;
         timer = eventData.timerDuration;
         clickCount = 0;
-        UpdateUIText(timerText, $"Tiempo restante: {timer:F1} s");
+        UpdateUIText(timerText, $"Earn-time:{timer:F1} s");
 
     }
     public void EndGame()
@@ -123,7 +123,7 @@ public class ClickerEvent : MonoBehaviour
         gameActive = false;
         if (timer <= 0f)
         {
-            float totalMaterials = (clickCount * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
+            double totalMaterials = (clickCount * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
             inventory.AddMaterials(totalMaterials);
         }
         else

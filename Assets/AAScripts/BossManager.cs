@@ -11,7 +11,7 @@ public class BossManager : MonoBehaviour
 
     public GameObject BossScene;
 
-    private float mat1AtBossStart;
+    private double mat1AtBossStart;
 
     private bool BossIsOn = false;
 
@@ -33,7 +33,6 @@ public class BossManager : MonoBehaviour
             StartBoss();
         }
     }
-
     public void BuyBossStart()
     {
         if (inventory.Mat1 >= ClickerEventData.BossEnterPrice)
@@ -52,20 +51,29 @@ public class BossManager : MonoBehaviour
     {
         bossTimer += Time.deltaTime; // Aumentar el temporizador cada frame
 
-        float generatedSinceStart = inventory.Mat1 - mat1AtBossStart;
+        double generatedSinceStart = inventory.Mat1 - mat1AtBossStart;
 
         if (generatedSinceStart > 0)
         {
-            float amountToSpend = Mathf.Min(generatedSinceStart, 1000f);
-
-            inventory.Mat1 -= amountToSpend;
-            mat1AtBossStart += amountToSpend;
-            BossMoneySlider.value += amountToSpend;
+            inventory.Mat1 -= generatedSinceStart;
+            mat1AtBossStart += generatedSinceStart;
+            BossMoneySlider.value += (float)generatedSinceStart;
         }
 
         // Mostrar cuánto falta
         float remaining = BossMoneySlider.maxValue - BossMoneySlider.value;
-        BossRemainingText.text = $"Faltan {remaining:0}€";
+
+        // Cambio de color si queda menos del 5% del total
+        float progress = BossMoneySlider.value / BossMoneySlider.maxValue;
+
+        if (progress >= 0.95f)
+        {
+            BossRemainingText.text = $"<color=red>remain {remaining:0}</color>";
+        }
+        else
+        {
+            BossRemainingText.text = $"remain {remaining:0}";
+        }
 
         // Si completó el boss
         if (BossMoneySlider.value >= BossMoneySlider.maxValue)
@@ -78,6 +86,8 @@ public class BossManager : MonoBehaviour
             EndBoss(success: false);
         }
     }
+
+
 
     public void EndBoss(bool success)
     {
