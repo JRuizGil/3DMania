@@ -679,7 +679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Piso 2
+  m_Text: "2\xBA Floor"
 --- !u!222 &32530798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2616,7 +2616,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Automaters
+  m_Text: Auto Ghosts
 --- !u!222 &157328443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3173,7 +3173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 231.9375, y: -238.59375}
+  m_AnchoredPosition: {x: 231.925, y: -238.32864}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196433136
@@ -15684,7 +15684,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Puertas
+  m_Text: Upgrade Doors
 --- !u!222 &871721618
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17245,7 +17245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ESTAS SEGURO DE QUE QUIERES SALIR?
+  m_Text: Do youwant Quit the game?
 --- !u!222 &935270374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17395,7 +17395,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1330253256}
     m_Modifications:
     - target: {fileID: 173214, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
       propertyPath: m_Layer
@@ -17487,7 +17487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474514, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 474514, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
       propertyPath: m_LocalRotation.y
@@ -17495,7 +17495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474514, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 474514, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17532,6 +17532,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 51000866}
   m_SourcePrefab: {fileID: 100100000, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
+--- !u!4 &964931536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 474514, guid: a7d85abdc9b0b43f8858bad8d92695a2, type: 3}
+  m_PrefabInstance: {fileID: 964931535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &968395582
 GameObject:
   m_ObjectHideFlags: 0
@@ -17969,7 +17974,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Piso 1
+  m_Text: "1\xBA Floor"
 --- !u!222 &995001235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19791,7 +19796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 695.78125, y: -238.59375}
+  m_AnchoredPosition: {x: 695.775, y: -238.32864}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1089433498
@@ -23806,6 +23811,7 @@ Transform:
   - {fileID: 374056977}
   - {fileID: 363481418}
   - {fileID: 530622576}
+  - {fileID: 964931536}
   m_Father: {fileID: 1131546184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1335866959
@@ -41398,4 +41404,3 @@ SceneRoots:
   - {fileID: 2143379981}
   - {fileID: 902427448}
   - {fileID: 1754820639}
-  - {fileID: 964931535}
