@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        Display.text = $"Dinero: {FormatNumber(Mat1)}  Bu";
+        Display.text = $"Funds: {FormatNumber(Mat1)}  Bu";
     }
 
     string FormatNumber(double value)
