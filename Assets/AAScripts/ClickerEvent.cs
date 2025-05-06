@@ -8,24 +8,36 @@ public class ClickerEvent : MonoBehaviour
     private float timer;
     private int clickCount = 0;
     private float cooldownTimer = 0f;
+    private float multiplier = 1f;
 
     public GameObject PanelTxt;
-    public Text timerText;
-    public Text cooldownText;
+
+    public Slider timerSlider;
+    public Slider MultiSlider;
+
+    public Text MultiText;
 
     public ClickerEventData eventData;
     private Inventory inventory;
     public UpgradeButtonManager upgradeButtonManager;
+
     public AudioSource audioSource;
+
     private Camera prefabCamera;
     private Camera mainCamera;
+
     private bool wasCameraInactive = false;
+
     private Animator animator;
     private Transform Fantasma;
+
     private Vector3 escalaOriginal;
     
     private void Start()
     {
+        MultiText.text = $" X {multiplier}";
+        MultiSlider.minValue = 0;
+        MultiSlider.maxValue = eventData.neededClicksToMultiply;
         prefabCamera = GetComponentInChildren<Camera>(true);
         mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
@@ -60,23 +72,24 @@ public class ClickerEvent : MonoBehaviour
             return;
         }
         else if (wasCameraInactive)
-        {
-            cooldownText?.gameObject.SetActive(true);
-            timerText?.gameObject.SetActive(true);
+        {            
             wasCameraInactive = false;
         }
-
         if (cooldownTimer > 0 && !gameActive)
         {
             cooldownTimer -= Time.deltaTime;
-            UpdateCooldownText();
         }
-
         if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0 && isPrefabCameraActive)
         {
             if (!gameActive) StartGame();
             clickCount++;
-
+            MultiSlider.value = clickCount;
+            MultiText.text = $" X {multiplier}";
+            if (clickCount >= eventData.neededClicksToMultiply)
+            {
+                multiplier *= 2;
+                clickCount = 0;
+            }
             if (Fantasma != null)
             {
                 LeanTween.scale(Fantasma.gameObject, escalaOriginal * 0.8f, 0.05f) // Reducir tamaño relativo
@@ -88,11 +101,10 @@ public class ClickerEvent : MonoBehaviour
                     });
             }
         }
-
         if (gameActive)
         {
             timer -= Time.deltaTime;
-            UpdateUIText(timerText, $"Earn time: {timer:F1} s");
+            timerSlider.value = timer;
             if (timer <= 0) EndGame();
         }
     }
@@ -101,10 +113,8 @@ public class ClickerEvent : MonoBehaviour
         while (cooldownTimer > 0)
         {
             cooldownTimer -= Time.deltaTime;
-            UpdateCooldownText();
             yield return null;
         }
-        cooldownText.gameObject.SetActive(false);
     }
     public void StartGame()
     {
@@ -112,8 +122,10 @@ public class ClickerEvent : MonoBehaviour
         audioSource.Play();
         gameActive = true;
         timer = eventData.timerDuration;
+        timerSlider.maxValue = eventData.timerDuration;
+        timerSlider.value = eventData.timerDuration;
+        timerSlider.gameObject.SetActive(true);
         clickCount = 0;
-        UpdateUIText(timerText, $"Earn-time:{timer:F1} s");
 
     }
     public void EndGame()
@@ -121,33 +133,16 @@ public class ClickerEvent : MonoBehaviour
         animator.SetBool("Open", false);
         audioSource.Play();
         gameActive = false;
+        multiplier = 1;
         if (timer <= 0f)
         {
-            double totalMaterials = (clickCount * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
+            double totalMaterials = (multiplier * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
             inventory.AddMaterials(totalMaterials);
         }
         else
         {
             Debug.Log("El juego terminó antes de que se agotara el tiempo. No se otorgan materiales.");
         }
-        cooldownTimer = eventData.cooldownTime;
         StartCoroutine(CooldownRoutine());
-    }
-    private void UpdateUIText(Text uiText, string newText)
-    {
-        if (uiText != null && uiText.text != newText)
-        {
-            uiText.text = newText;
-            uiText.gameObject.SetActive(true);
-        }
-    }
-
-    public void UpdateCooldownText()
-    {
-        if (cooldownText != null)
-        {
-            cooldownText.text = $"Cooldown: {Mathf.Max(0, cooldownTimer):F1} s";
-            cooldownText.gameObject.SetActive(true);
-        }
     }
 }

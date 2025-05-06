@@ -6,6 +6,7 @@ public class ClickerEventData : ScriptableObject
     public float timerDuration = 5f;
     public float cooldownTime = 5f;
     public float materialMultiplier = 10f;
+    public float neededClicksToMultiply = 0f;
     public double price = 0f;
     public double actualearn = 0f;
     public float door = 0;

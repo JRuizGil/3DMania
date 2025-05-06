@@ -15,7 +15,8 @@ MonoBehaviour:
   timerDuration: 13
   cooldownTime: 1
   materialMultiplier: 1.11
-  price: 1236800
+  neededClicksToMultiply: 65
+  price: 20236800
   actualearn: 1
   door: 2.1
   lvl: 0

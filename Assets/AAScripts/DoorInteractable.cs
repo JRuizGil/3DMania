@@ -94,7 +94,6 @@ public class DoorInteractable : MonoBehaviour
                 isMoving = false;
                 mainCamera.gameObject.SetActive(false);
                 prefabCamera.gameObject.SetActive(true);
-                clickerEvent?.UpdateCooldownText();
             }
         }
     }
