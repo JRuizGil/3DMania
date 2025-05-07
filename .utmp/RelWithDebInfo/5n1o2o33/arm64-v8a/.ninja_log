@@ -1,0 +1,10 @@
+# ninja log v5
+22	1128	7683379891401603	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	93731c80f2629cf
+17	1139	7683379891594846	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	716391362a6d50f5
+6	1140	7683379891594846	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	5c66dbe79f923551
+34	1161	7683379891860380	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fc00fa1e9a62499e
+40	1236	7683379892611190	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b78234710cd27397
+11	1291	7683379893263006	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	32a9ae5ddf8e9850
+27	1463	7683379894946094	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	ee0a6c3e2128ca36
+0	1568	7683379896003106	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8ab9d204d64a9fce
+1569	1698	7683379897591471	C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5n1o2o33/obj/arm64-v8a/libgame.so	5bdb23d7cf9c7f54

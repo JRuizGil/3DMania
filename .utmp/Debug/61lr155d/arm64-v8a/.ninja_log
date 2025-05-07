@@ -1,0 +1,12 @@
+# ninja log v5
+55	268	7683413511030204	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	8cf3bee30c20fd14
+270	415	7683413512876390	C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/Library/PramData/AndroidApplicationController/Cache/com.UnityTechnologies.com.unity.template.urpblank/gradle-project/unityLibrary/build/intermediates/cxx/Debug/61lr155d/obj/arm64-v8a/libswappywrapper.so	c21bb6356ae54382
+28	1166	7683413519950946	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	36f4d00bf07ecdfe
+19	1168	7683413520041458	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	136e0b35e0c575f6
+0	1173	7683413520061430	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	a6ccfb5503eb37f1
+33	1186	7683413520197222	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8d1f4b8ba3fbb11b
+45	1214	7683413520567341	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	9bdf0bc8e721c231
+6	1241	7683413520861085	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	12a6ef8f68745ac8
+14	1349	7683413521914096	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f467024bd63fa996
+10	1414	7683413522519678	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	577bd2a96753abd6
+1414	1514	7683413523897360	C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/Library/PramData/AndroidApplicationController/Cache/com.UnityTechnologies.com.unity.template.urpblank/gradle-project/unityLibrary/build/intermediates/cxx/Debug/61lr155d/obj/arm64-v8a/libgame.so	ae36eaf96c0bb0e4

@@ -79,7 +79,7 @@ public class ClickerEvent : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
-        if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0 && isPrefabCameraActive)
+        if ((Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && cooldownTimer <= 0 && isPrefabCameraActive)
         {
             if (!gameActive) StartGame();
             clickCount++;
