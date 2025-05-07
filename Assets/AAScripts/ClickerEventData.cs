@@ -9,7 +9,7 @@ public class ClickerEventData : ScriptableObject
     public float neededClicksToMultiply = 0f;
     public double price = 0f;
     public double actualearn = 0f;
-    public float door = 0;
+    public float door;
     public float lvl = 0;
     public double initialrevenue = 0;
     public GameObject AutoMatePrefab;

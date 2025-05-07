@@ -13,7 +13,7 @@ public class ActivateAuto : MonoBehaviour
 
         if (text != null)
         {
-            text.text = $"Price: {FormatNumber(ClickerEventData.AutomaterPrice)} Bu";
+            text.text = $"{ClickerEventData.door}\n{FormatNumber(ClickerEventData.AutomaterPrice)} Bu";
         }
         else
         {

@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,11 @@ public class UpgradeButtonManager : MonoBehaviour
     public Button button;
     public Text btntext;
     public Text txt;
+    public Text FloorTxt;
+    public GameObject CamPos;
+    public Button UpArrow;
+    public Button DownArrow;
+
 
     [SerializeField] public float lvl;
     [SerializeField] public double actualearn;
@@ -35,15 +42,20 @@ public class UpgradeButtonManager : MonoBehaviour
         
         Debug.Log("puerta "+ ClickerEventData.door + "cuesta" + price + "ofrece"+ actualearn);
         
-        txt.text = $"Door:{ClickerEventData.door}  |   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}  |   LVL:{lvl}";            
-        
+        txt.text = $" LVL:{lvl} \nEarn:{FormatPrice(actualearn)}     Cooldown:{ClickerEventData.timerDuration}s";
+        FloorTxt.text = $"{ClickerEventData.door}º";
         price = ClickerEventData.price;
-        btntext.text = $"Buy:{price:F1}Bu";
-        
+        btntext.text = $"{FormatPrice(price)}Bu";
+
     }
     private void Update()
     {
-        Buyablebtn();
+        if(ClickerEventData.door== 6 && lvl >= 1)
+        {
+            CamPos.SetActive(true);
+            UpArrow.interactable = true;
+            DownArrow.interactable = true;
+        }
     }
     public void BuyUpgrade()
     {     
@@ -75,23 +87,14 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            if (price >= 10000000f)
-            {
-                btntext.text = $"Buy: {FormatPrice(price)}Bu";
-
-            }
-            else
-            {
-                btntext.text = $"Buy: {FormatPrice(price)}Bu";
-
-            }
+            btntext.text = $"Buy: {FormatPrice(price)}Bu";
         }
     }
     public void SumEarnings()
     { 
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"Door:{door}|   Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}|   LVL:{lvl}";        
+        txt.text = $"Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}|   LVL:{lvl}";        
     }
     public void ChangeMultiplyEarn()
     {

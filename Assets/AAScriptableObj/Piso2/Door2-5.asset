@@ -18,7 +18,7 @@ MonoBehaviour:
   neededClicksToMultiply: 445
   price: 57000000000
   actualearn: 1
-  door: 2.5
+  door: 10
   lvl: 0
   initialrevenue: 100000000000
   AutoMatePrefab: {fileID: 2593488012899583450, guid: f79bf707faa73184a8ad87ee459dc8db, type: 3}
