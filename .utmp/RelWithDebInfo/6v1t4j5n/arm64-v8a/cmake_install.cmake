@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/GameActivity/cmake_install.cmake")
+  include("C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/FramePacing/cmake_install.cmake")
 
 endif()
 

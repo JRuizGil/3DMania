@@ -114,7 +114,8 @@ public class PlayerController : MonoBehaviour
 
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if ((Input.GetMouseButtonDown(0)||(Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began)))
+
         {
             Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
             if (activeCamera == null || activeCamera.tag != "MainCamera") return;

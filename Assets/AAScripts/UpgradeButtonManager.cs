@@ -94,7 +94,7 @@ public class UpgradeButtonManager : MonoBehaviour
     { 
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"Cooldown:{ClickerEventData.timerDuration}s \nActualEarn:{FormatPrice(actualearn)}|   LVL:{lvl}";        
+        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{ClickerEventData.timerDuration}s";        
     }
     public void ChangeMultiplyEarn()
     {

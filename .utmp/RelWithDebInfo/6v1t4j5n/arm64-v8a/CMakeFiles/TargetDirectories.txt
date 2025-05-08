@@ -3,3 +3,6 @@ C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm
 C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/GameActivity/CMakeFiles/game.dir
 C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
 C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
+C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/JoseRamonRuizGil/Desktop/CosmicHaunts/.utmp/RelWithDebInfo/6v1t4j5n/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

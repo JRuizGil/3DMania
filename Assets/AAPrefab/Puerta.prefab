@@ -137,7 +137,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.4403}
-  m_SizeDelta: {x: 2512.8115, y: 2664.9873}
+  m_SizeDelta: {x: 2802.0645, y: 2664.9873}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1927085711148212832
 Canvas:
@@ -431,8 +431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -6.2}
+  m_SizeDelta: {x: 0, y: 12.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5401486975618282492
 CanvasRenderer:
@@ -463,19 +463,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 3971b7f47e2220147a808befaf877006, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 1f45c65ca5f440e4081eb00b9371aeeb, type: 3}
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 100
+    m_MinSize: 38
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: x2
 --- !u!1 &872028264272236009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1148,7 @@ GameObject:
   - component: {fileID: 1877408439580634190}
   - component: {fileID: 1877408439583534190}
   - component: {fileID: 1877408439582535342}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1164,7 @@ Transform:
   m_GameObject: {fileID: 1877408439580340334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.00051006785, y: -0.07745415, z: -0.347}
+  m_LocalPosition: {x: 0.00051006785, y: -0.081, z: -0.347}
   m_LocalScale: {x: 3.4463434, y: 3.4463432, z: 3.4463434}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2413,8 +2413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1255.4}
-  m_SizeDelta: {x: -2160.6, y: -2511}
+  m_AnchoredPosition: {x: 0, y: 1246.5}
+  m_SizeDelta: {x: -2248.8, y: -2493.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2131043933517745487
 CanvasRenderer:
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2924528, g: 0.29107332, b: 0.29107332, a: 1}
+  m_Color: {r: 0.23137257, g: 0.24705884, b: 0.25490198, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
