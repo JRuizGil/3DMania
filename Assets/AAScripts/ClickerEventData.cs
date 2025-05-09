@@ -15,8 +15,5 @@ public class ClickerEventData : ScriptableObject
     public GameObject AutoMatePrefab;
     public float AutomaterPrice;
     public float BossCountdownTime;
-    public double HaveToEarn;
-    public float BossEarnMultiplier;
-    public float BossEnterPrice;
 
 }
