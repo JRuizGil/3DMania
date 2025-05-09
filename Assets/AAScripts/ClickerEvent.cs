@@ -16,6 +16,7 @@ public class ClickerEvent : MonoBehaviour
     public Slider MultiSlider;
 
     public Text MultiText;
+    public Text BUtxt;
 
     public ClickerEventData eventData;
     private Inventory inventory;
@@ -32,9 +33,10 @@ public class ClickerEvent : MonoBehaviour
     private Transform Fantasma;
 
     private Vector3 escalaOriginal;
-    
+    private Canvas canvas;
     private void Start()
     {
+        canvas = GetComponentInChildren<Canvas>();
         MultiText.text = $" X {multiplier}";
         MultiSlider.minValue = 0;
         MultiSlider.maxValue = eventData.neededClicksToMultiply;
@@ -83,6 +85,7 @@ public class ClickerEvent : MonoBehaviour
         {
             if (!gameActive) StartGame();
             clickCount++;
+            SpawnText();
             MultiSlider.value = clickCount;
             MultiText.text = $" X {multiplier}";
             if (clickCount >= eventData.neededClicksToMultiply)
@@ -145,4 +148,46 @@ public class ClickerEvent : MonoBehaviour
         }
         StartCoroutine(CooldownRoutine());
     }
+    public void SpawnText()
+    {
+        StartCoroutine(SpawnTextRoutine());
+    }
+    private IEnumerator SpawnTextRoutine()
+    {
+        // Instancia el texto como hijo del canvas
+        Text newText = Instantiate(BUtxt, canvas.transform);
+
+        // Obtener tamaño del Canvas en mundo
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+        Vector2 size = canvasRect.sizeDelta;
+
+        // Generar posición aleatoria dentro del área del Canvas
+        float randomX = Random.Range(-size.x / 2f, size.x / 2f);
+        float randomY = Random.Range(-size.y / 2f, size.y / 2f);
+
+        Vector3 worldPosition = canvas.transform.TransformPoint(new Vector3(randomX, randomY, 0f));
+
+        // Asignar posición mundial al RectTransform del texto
+        RectTransform textRect = newText.GetComponent<RectTransform>();
+        textRect.position = worldPosition;
+        textRect.localScale = Vector3.one;
+
+        newText.text = "BU";
+
+        // Escalado progresivo hacia cero durante 1 segundo
+        float duration = 1f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            float scale = Mathf.Lerp(1f, 0f, t);
+            textRect.localScale = new Vector3(scale, scale, scale);
+            yield return null;
+        }
+
+        Destroy(newText.gameObject);
+    }
+
 }

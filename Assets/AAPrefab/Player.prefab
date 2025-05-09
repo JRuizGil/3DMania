@@ -285,6 +285,7 @@ MonoBehaviour:
   lookRotationSpeed: 25
   currentInteractable: {fileID: 9087651052525892023, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
   cameraTransform: {fileID: 1175617602885576809, guid: 855ac4239954de44c8b83319aad3a419, type: 3}
+  floorManager: {fileID: 0}
   isInteractingWithDoor: 0
 --- !u!1 &4441637125444587872
 GameObject:
