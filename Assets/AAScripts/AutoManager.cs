@@ -1,13 +1,13 @@
 using UnityEngine;
 
 using System.Collections;
+using System.Linq;
 public class AutoManager : MonoBehaviour
 {
     public UpgradeButtonManager upgradeButtonManager;
     public Inventory Inventory;
     public ClickerEventData ClickerEventData;
     public Animator animator;
-    public GameObject NextFloor;
     private double actualearn;
 
     private void Awake()
@@ -19,11 +19,8 @@ public class AutoManager : MonoBehaviour
         actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
     }
     private void Start()
-    {
-        if(ClickerEventData.door == 1.5f)
-        {
-            NextFloor.SetActive(true);
-        }        
+    {       
+               
         StartCoroutine(AutoLoop());
     }
 
@@ -36,9 +33,8 @@ public class AutoManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // Espera entre automatizaciones
         }
     }
-
     private IEnumerator AutomatizarCoroutine()
-    {
+    {        
         animator.SetBool("Open", true);
         yield return new WaitForSeconds(ClickerEventData.timerDuration);
 

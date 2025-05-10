@@ -9,16 +9,12 @@ public class DoorInteractable : MonoBehaviour
     public float moveSpeed = 10f;
     private PlayerController controller;
     private bool isMoving = false;
-    private bool isdooractive = false;
 
     [Header("Camera Settings")]
     private Camera mainCamera;
     public Camera prefabCamera;
 
     private ClickerEvent clickerEvent;
-
-    public UpgradeButtonManager NextDoorButtonManager;
-    public GameObject prfbnextDoor;
 
     private void Start()
     {
@@ -35,15 +31,7 @@ public class DoorInteractable : MonoBehaviour
     private void Update()
     {
         PlayerMove();
-        HandleEscape();
-        if(NextDoorButtonManager != null)
-        {
-            if (NextDoorButtonManager.lvl >= 1 && !isdooractive)
-            {
-                prfbnextDoor.SetActive(true);
-                isdooractive = true;
-            }
-        }        
+        HandleEscape();      
     }
     private bool IsCameraActive(Camera cam)
     {
@@ -98,9 +86,6 @@ public class DoorInteractable : MonoBehaviour
         }
     }
 
-
-
-
     private void HandleEscape()
     {
         if (IsCameraActive(prefabCamera) && Input.GetKeyDown(KeyCode.Escape))
@@ -110,4 +95,5 @@ public class DoorInteractable : MonoBehaviour
             controller.isInteractingWithDoor = false; //  Reactiva el movimiento al salir
         }
     }
+    
 }

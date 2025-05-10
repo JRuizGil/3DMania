@@ -162,4 +162,13 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.position.z);
         }
     }
+    public void DisableInteract()
+    {
+        isInteractingWithDoor = false;
+        Camera activeCamera = Camera.allCameras.FirstOrDefault(cam => cam.isActiveAndEnabled);
+        if(activeCamera.tag != "MainCamera")
+        {
+            activeCamera.gameObject.SetActive(false);
+        }
+    }
 }

@@ -25,7 +25,6 @@ public class ClickerEvent : MonoBehaviour
     public AudioSource audioSource;
 
     private Camera prefabCamera;
-    private Camera mainCamera;
 
     private bool wasCameraInactive = false;
 
@@ -41,7 +40,6 @@ public class ClickerEvent : MonoBehaviour
         MultiSlider.minValue = 0;
         MultiSlider.maxValue = eventData.neededClicksToMultiply;
         prefabCamera = GetComponentInChildren<Camera>(true);
-        mainCamera = Camera.main;
         inventory = Object.FindFirstObjectByType<Inventory>();
         PanelTxt?.SetActive(true);
         Fantasma = transform.Find("Fantasma");
@@ -189,5 +187,11 @@ public class ClickerEvent : MonoBehaviour
 
         Destroy(newText.gameObject);
     }
-
+    public void ActivateDoor()
+    {
+        if (!gameObject.activeSelf && upgradeButtonManager.lvl == 1)
+        {
+            gameObject.SetActive(true);
+        }
+    }
 }

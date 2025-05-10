@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloorManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class FloorManager : MonoBehaviour
     public int currentFloorIndex = 0;
     private Vector3 camtargetPosition; // Nuevo: posición objetivo
     public float moveSpeed = 5f; // Velocidad de movimiento
+    
+
 
     private void Start()
     {
+        Maincamera.gameObject.SetActive(true);
         if (camPos.Length > 0)
         {
             camtargetPosition = camPos[0].transform.position;
@@ -76,4 +80,5 @@ public class FloorManager : MonoBehaviour
     {
         camtargetPosition = camPos[currentFloorIndex].position; // Solo cambiamos el destino, la Update se encarga del lerp
     }
+    
 }

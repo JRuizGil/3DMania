@@ -11,10 +11,9 @@ public class UpgradeButtonManager : MonoBehaviour
     public Text btntext;
     public Text txt;
     public Text FloorTxt;
-    public GameObject CamPos;
-    public Button UpArrow;
-    public Button DownArrow;
-
+    public GameObject nextCamPos;
+    public Button uparrow;
+    public Button downarrow;
 
     [SerializeField] public float lvl;
     [SerializeField] public double actualearn;
@@ -50,12 +49,7 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     private void Update()
     {
-        if(ClickerEventData.door== 6 && lvl >= 1)
-        {
-            CamPos.SetActive(true);
-            UpArrow.interactable = true;
-            DownArrow.interactable = true;
-        }
+        
     }
     public void BuyUpgrade()
     {     
@@ -141,5 +135,12 @@ public class UpgradeButtonManager : MonoBehaviour
 
         return value.ToString("F2") + suffixes[suffixIndex];
     }
-
+    public void ActivateFloorsButtons()
+    {
+        if (lvl == 1)
+        {
+            nextCamPos.SetActive(true);
+            uparrow.interactable = true;
+        }
+    }
 }
