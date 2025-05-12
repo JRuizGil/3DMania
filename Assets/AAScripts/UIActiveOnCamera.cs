@@ -2,43 +2,51 @@ using UnityEngine;
 
 public class UIActiveOnCamera : MonoBehaviour
 {
-    public GameObject uiElement;    // Para Main Camera
-    public GameObject ui2Element;   // Para segunda cámara activa
-    public GameObject ui3Element;   // Para tercera cámara activa (o cualquier otra)
+    public GameObject uiElement;
+    public GameObject ui2Element;
+    public GameObject ui3Element;
 
-    //void Update()
-    //{
-    //    Camera[] cameras = Camera.allCameras;
-    //
-    //    GameObject camGO = null;
-    //
-    //    foreach (Camera cam in cameras)
-    //    {
-    //        if (cam.gameObject.activeInHierarchy)
-    //        {
-    //            camGO = cam.gameObject;
-    //            break; // Usamos la primera cámara activa que encontremos
-    //        }
-    //    }        
-    //
-    //    uiElement.SetActive(false);
-    //    ui2Element.SetActive(false);
-    //    ui3Element.SetActive(false);
-    //
-    //    if (camGO != null)
-    //    {
-    //        if (camGO.CompareTag("MainCamera"))
-    //        {
-    //            uiElement.SetActive(true); // Si es la MainCamera
-    //        }
-    //        else if (camGO.CompareTag("CameraDoor"))
-    //        {
-    //            ui2Element.SetActive(true); 
-    //        }
-    //        else
-    //        {
-    //            ui3Element.SetActive(true); // Cualquier otra cámara activa
-    //        }
-    //    }
-    //}
+    private GameObject lastActiveCamera;
+
+    void Update()
+    {
+        Camera[] cameras = Camera.allCameras;
+        GameObject currentCamGO = null;
+
+        foreach (Camera cam in cameras)
+        {
+            if (cam.gameObject.activeInHierarchy)
+            {
+                currentCamGO = cam.gameObject;
+                break;
+            }
+        }
+
+        // Si no hay cambio de cámara activa, no hacer nada
+        if (currentCamGO == lastActiveCamera) return;
+
+        // Guardar la nueva cámara activa
+        lastActiveCamera = currentCamGO;
+
+        // Actualizar UI según la cámara activa
+        uiElement.SetActive(false);
+        ui2Element.SetActive(false);
+        ui3Element.SetActive(false);
+
+        if (currentCamGO != null)
+        {
+            if (currentCamGO.CompareTag("MainCamera"))
+            {
+                uiElement.SetActive(true);
+            }
+            else if (currentCamGO.CompareTag("CameraDoor"))
+            {
+                ui2Element.SetActive(true);
+            }
+            else
+            {
+                ui3Element.SetActive(true);
+            }
+        }
+    }
 }
