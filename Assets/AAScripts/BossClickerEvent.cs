@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 
 public class BossClickerEvent : MonoBehaviour
 {
@@ -13,6 +16,8 @@ public class BossClickerEvent : MonoBehaviour
 
     [Header("Clicker Event")]
     public Slider clickSlider;
+    public VisualEffect effect;
+    public GameObject AtractionPos;
     public Slider timeSlider;
     public float totalTime = 10f; // Tiempo límite en segundos
     public int clicksToFill = 10;
@@ -25,7 +30,7 @@ public class BossClickerEvent : MonoBehaviour
 
     private bool isClickerActive = false;
     private float currentTime = 0f;
-    private int currentClicks = 0;
+    private float currentClicks = 0f;
     private int currentStage = 0;
 
     public Camera MainCamera;
@@ -38,9 +43,13 @@ public class BossClickerEvent : MonoBehaviour
     private void Start()
     {
         escalaOriginal = gameObject.transform.localScale;
+        effect.SetFloat("AtractionStrength", 1);
+        effect.SetFloat("Rate", 100);
+
     }
     private void Awake()
     {
+        effect.Play();
         BosscamAudiolist.enabled = false;
 
         bossPositions = new Transform[] {
@@ -52,7 +61,7 @@ public class BossClickerEvent : MonoBehaviour
         };
     }
     private void OnEnable()
-    {
+    {        
         currentStage = 0;
         MoveToStage(currentStage);
 
@@ -63,7 +72,7 @@ public class BossClickerEvent : MonoBehaviour
         timeSlider.value = totalTime;
 
         currentTime = totalTime;
-        currentClicks = 0;
+        currentClicks = 0f;
         isClickerActive = true;
 
         BosscamAudiolist.enabled = true;
@@ -96,6 +105,10 @@ public class BossClickerEvent : MonoBehaviour
             currentClicks++;
             clickSlider.value = currentClicks;
             
+            effect.SetFloat("AtractionStrength", currentClicks);
+            effect.SetFloat("Rate", currentClicks * 200f);
+
+
             if (currentClicks >= clicksToFill)
             {
                 LeanTween.scale(gameObject.gameObject, escalaOriginal * 0.8f, 0.5f) // Reducir tamaño relativo
@@ -107,6 +120,7 @@ public class BossClickerEvent : MonoBehaviour
                     });
                 //disparo aqui
                 Nextbosspos();
+                TriggerAtractionBoost();
                 currentClicks = 0;
                 clickSlider.value = 0;
             }
@@ -124,6 +138,7 @@ public class BossClickerEvent : MonoBehaviour
         // Avanzar a la siguiente posición si no es la última
         if (currentStage < bossPositions.Length - 1)
         {
+            
             currentStage++;
             MoveToStage(currentStage);
         }
@@ -150,12 +165,48 @@ public class BossClickerEvent : MonoBehaviour
         timeSlider.value = totalTime;
 
         currentClicks = 0;
+        effect.SetFloat("AtractionStrength", 0);
         currentTime = totalTime;
-
         isClickerActive = false;
         BossScene.gameObject.SetActive(false);
         MainCamera.gameObject.SetActive(true);
         GameHud.gameObject.SetActive(true);        
     }
 
+    public void TriggerAtractionBoost()
+    {
+        
+        
+        StartCoroutine(TemporaryAtractionChange());
+        
+    }
+
+    private IEnumerator TemporaryAtractionChange()
+    {
+        Vector3 originalPos = AtractionPos.transform.position;
+
+        // Mover hacia la derecha
+        Vector3 newPos = originalPos;
+        newPos.x += 100f;
+        AtractionPos.transform.position = newPos;
+
+        // Cambiar valores del efecto
+        effect.SetFloat("AtractionStrength", 1000f);
+        effect.SetFloat("Radius", 0.1f);
+        effect.SetFloat("Rate", 10000f);
+        yield return new WaitForSeconds(0.5f);
+
+        // Volver a la posición original
+        AtractionPos.transform.position = originalPos;
+
+        // Cambiar valores del efecto nuevamente
+        effect.SetFloat("AtractionStrength", -100f);
+        effect.SetFloat("Radius", 0.5f);
+        yield return new WaitForSeconds(1.5f);
+
+        // Restaurar valores finales
+        effect.SetFloat("AtractionStrength", 1f);
+        effect.SetFloat("Rate", 100f);
+
+    }
 }
