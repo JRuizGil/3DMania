@@ -47004,7 +47004,7 @@ Transform:
   m_GameObject: {fileID: 670370070583749940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 12.97}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -47255,14 +47255,14 @@ VisualEffect:
       - m_Value: 10
         m_Name: LinearDrag
         m_Overridden: 1
-      - m_Value: 100
+      - m_Value: 100000
         m_Name: Rate
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0.0000010577837, y: -0.00000013917685, z: 12.970005}
+      - m_Value: {x: 0.0000006965796, y: -0.00000013917685, z: 0.0000010518235}
         m_Name: AtractionPos
         m_Overridden: 1
     m_Vector4f:
@@ -49877,7 +49877,7 @@ MonoBehaviour:
   AtractionPos: {fileID: 670370070583749940}
   timeSlider: {fileID: 1168903992}
   totalTime: 60
-  clicksToFill: 100
+  clicksToFill: 80
   MainCamera: {fileID: 991618068}
   BosscamAudiolist: {fileID: 290013019}
   GameHud: {fileID: 840139647}
