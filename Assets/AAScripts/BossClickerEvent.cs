@@ -193,14 +193,14 @@ public class BossClickerEvent : MonoBehaviour
         // Cambiar valores del efecto
         effect.SetFloat("AtractionStrength", 1000f);
         effect.SetFloat("Radius", 0.1f);
-        effect.SetFloat("Rate", 10000f);
+        effect.SetFloat("Rate", 100000f);
         yield return new WaitForSeconds(0.5f);
 
         // Volver a la posición original
         AtractionPos.transform.position = originalPos;
 
         // Cambiar valores del efecto nuevamente
-        effect.SetFloat("AtractionStrength", -100f);
+        effect.SetFloat("AtractionStrength", -1000f);
         effect.SetFloat("Radius", 0.5f);
         yield return new WaitForSeconds(1.5f);
 
