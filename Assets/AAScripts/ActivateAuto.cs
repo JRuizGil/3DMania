@@ -28,7 +28,7 @@ public class ActivateAuto : MonoBehaviour
         {
             inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario
             AutomaterPrefab.SetActive(true);  // Activa el automatizador
-            Destroy(gameObject); // Destruye el objeto después de la compra
+            gameObject.SetActive(false); // Destruye el objeto después de la compra
         }
         else
         {

@@ -38,9 +38,9 @@ public class UpgradeButtonManager : MonoBehaviour
         initialrevenue = ClickerEventData.initialrevenue;
         button.enabled = true;
         actualearn = ClickerEventData.initialrevenue;
-        
-        Debug.Log("puerta "+ ClickerEventData.door + "cuesta" + price + "ofrece"+ actualearn);
-        
+
+        Debug.Log("puerta " + ClickerEventData.door + "cuesta" + price + "ofrece" + actualearn);
+
         txt.text = $" LVL:{lvl} \nEarn:{FormatPrice(actualearn)}     Cooldown:{ClickerEventData.timerDuration}s";
         FloorTxt.text = $"{ClickerEventData.door}º";
         price = ClickerEventData.price;
@@ -49,10 +49,10 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     private void Update()
     {
-        
+
     }
     public void BuyUpgrade()
-    {     
+    {
         if (inventory != null)
         {
             if (inventory.Mat1 > price) // Verifica si tiene suficiente dinero
@@ -61,7 +61,7 @@ public class UpgradeButtonManager : MonoBehaviour
                 lvl++;
                 SumEarnings();
                 MultiplyPrice(); // Aumenta el precio para la siguiente compra                
-                
+
             }
             else
             {
@@ -70,7 +70,7 @@ public class UpgradeButtonManager : MonoBehaviour
         }
     }
     private void Buyablebtn()
-    {        
+    {
         if (inventory.Mat1 > price)
         {
             button.interactable = true;
@@ -81,18 +81,18 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            btntext.text = $"Buy: {FormatPrice(price)}Bu";
+            btntext.text = $"Buy:{FormatPrice(price)}\nBu";
         }
     }
     public void SumEarnings()
-    { 
+    {
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{ClickerEventData.timerDuration}s";        
+        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{ClickerEventData.timerDuration}s";
     }
     public void ChangeMultiplyEarn()
     {
-        if(lvl >= 200)
+        if (lvl >= 200)
         {
             actualmultiplier = 64;
         }
@@ -143,4 +143,30 @@ public class UpgradeButtonManager : MonoBehaviour
             uparrow.interactable = true;
         }
     }
+    public void ResetAll()
+    {
+        lvl = 0;
+        actualmultiplier = 1;
+        door = ClickerEventData.door;
+        initialrevenue = ClickerEventData.initialrevenue;
+        actualearn = initialrevenue;
+        Cooldown = ClickerEventData.timerDuration;
+        price = ClickerEventData.price;
+
+        // Reinicia la UI
+        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{Cooldown}s";
+        FloorTxt.text = $"{door}º";
+        btntext.text = $"Buy: {FormatPrice(price)}Bu";
+
+        // Reactiva el botón de mejora
+        button.interactable = true;
+
+        // Opcional: desactiva elementos visuales si fue activado en otro punto
+        nextCamPos.SetActive(false);
+        uparrow.interactable = false;
+        downarrow.interactable = false;
+
+        Debug.Log("Se ha hecho reset de todas las variables.");
+    }
+
 }

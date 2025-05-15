@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
+using Unity.VisualScripting;
 
 public class BossClickerEvent : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class BossClickerEvent : MonoBehaviour
 
     public Camera MainCamera;
     public AudioListener BosscamAudiolist;
+    public Inventory Inventory;
+    public FloorManager FloorManager;
+    public StartManager StartManager;
+    public UpgradeButtonManager[] UpgradeButtonManager;
+    public GameObject EndScene;
 
     public GameObject GameHud;
     public GameObject BossScene;
@@ -49,6 +55,8 @@ public class BossClickerEvent : MonoBehaviour
     }
     private void Awake()
     {
+        gameObject.transform.position = awakePosTransform.position;
+
         effect.Play();
         BosscamAudiolist.enabled = false;
 
@@ -77,7 +85,6 @@ public class BossClickerEvent : MonoBehaviour
 
         BosscamAudiolist.enabled = true;
     }
-
     private void FixedUpdate()
     {
         if (!isMoving) return;
@@ -92,7 +99,6 @@ public class BossClickerEvent : MonoBehaviour
             isMoving = false;
         }
     }
-
     private void Update()
     {
         if (!isClickerActive) return;
@@ -144,7 +150,18 @@ public class BossClickerEvent : MonoBehaviour
         }
         else
         {
-            Debug.Log("Has alcanzado la última posición.");
+            ResetClickerEvent();
+            Inventory.Mat1 = 4f;
+            clickSlider.maxValue =+ 20;
+            FloorManager.FloorDown();
+            StartManager.StartUnable();
+            StartManager.StartEnable();
+            foreach (UpgradeButtonManager button in UpgradeButtonManager)
+            {
+                if (button != null)
+                    button.ResetAll();
+            }
+
         }
     }
     private void MoveToStage(int stage)
@@ -172,13 +189,9 @@ public class BossClickerEvent : MonoBehaviour
         MainCamera.gameObject.SetActive(true);
         GameHud.gameObject.SetActive(true);        
     }
-
     public void TriggerAtractionBoost()
-    {
-        
-        
-        StartCoroutine(TemporaryAtractionChange());
-        
+    {     
+        StartCoroutine(TemporaryAtractionChange());       
     }
 
     private IEnumerator TemporaryAtractionChange()
@@ -207,6 +220,5 @@ public class BossClickerEvent : MonoBehaviour
         // Restaurar valores finales
         effect.SetFloat("AtractionStrength", 1f);
         effect.SetFloat("Rate", 100f);
-
     }
 }
