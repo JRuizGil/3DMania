@@ -25,15 +25,7 @@ public class UpgradeButtonManager : MonoBehaviour
 
     private void Start()
     {
-        lvl = 0;
-        if (ClickerEventData.door == 1)
-        {
-            lvl++;
-            actualmultiplier = 1;
-            initialrevenue = ClickerEventData.initialrevenue;
-            SumEarnings();
-            MultiplyPrice();
-        }
+        lvl = 0;        
         door = ClickerEventData.door;
         initialrevenue = ClickerEventData.initialrevenue;
         button.enabled = true;
@@ -41,16 +33,12 @@ public class UpgradeButtonManager : MonoBehaviour
 
         Debug.Log("puerta " + ClickerEventData.door + "cuesta" + price + "ofrece" + actualearn);
 
-        txt.text = $" LVL:{lvl} \nEarn:{FormatPrice(actualearn)}     Cooldown:{ClickerEventData.timerDuration}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{ClickerEventData.timerDuration}s";
         FloorTxt.text = $"{ClickerEventData.door}º";
         price = ClickerEventData.price;
-        btntext.text = $"{FormatPrice(price)}Bu";
+        btntext.text = $"{FormatPrice(price)} Bu";
 
-    }
-    private void Update()
-    {
-
-    }
+    }    
     public void BuyUpgrade()
     {
         if (inventory != null)
@@ -81,14 +69,14 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
         if (btntext != null)
         {
-            btntext.text = $"Buy:{FormatPrice(price)}\nBu";
+            btntext.text = $"{FormatPrice(price)} Bu";
         }
     }
     public void SumEarnings()
     {
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{ClickerEventData.timerDuration}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{ClickerEventData.timerDuration}s";
     }
     public void ChangeMultiplyEarn()
     {
@@ -154,9 +142,9 @@ public class UpgradeButtonManager : MonoBehaviour
         price = ClickerEventData.price;
 
         // Reinicia la UI
-        txt.text = $"LVL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{Cooldown}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{Cooldown}s";
         FloorTxt.text = $"{door}º";
-        btntext.text = $"Buy: {FormatPrice(price)}Bu";
+        btntext.text = $"{FormatPrice(price)} Bu";
 
         // Reactiva el botón de mejora
         button.interactable = true;

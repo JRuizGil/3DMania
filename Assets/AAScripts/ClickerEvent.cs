@@ -9,6 +9,7 @@ public class ClickerEvent : MonoBehaviour
     private int clickCount = 0;
     private float cooldownTimer = 0f;
     private float multiplier = 1f;
+    private double TotMat;
 
     public GameObject PanelTxt;
 
@@ -36,7 +37,8 @@ public class ClickerEvent : MonoBehaviour
     private void Start()
     {
         canvas = GetComponentInChildren<Canvas>();
-        MultiText.text = $" X {multiplier}";
+        MultiText.text = $"{FormatPrice(TotMat)} X <color=#FF0000>{multiplier}</color>";
+
         MultiSlider.minValue = 0;
         MultiSlider.maxValue = eventData.neededClicksToMultiply;
         prefabCamera = GetComponentInChildren<Camera>(true);
@@ -85,7 +87,7 @@ public class ClickerEvent : MonoBehaviour
             clickCount++;
             SpawnText();
             MultiSlider.value = clickCount;
-            MultiText.text = $" X {multiplier}";
+            MultiText.text = $"{FormatPrice(TotMat)} BU <color=#FF0000> X {multiplier}</color>";
             if (clickCount >= eventData.neededClicksToMultiply)
             {
                 multiplier *= 2;
@@ -139,6 +141,7 @@ public class ClickerEvent : MonoBehaviour
         {
             double totalMaterials = (multiplier * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
             inventory.AddMaterials(totalMaterials);
+            TotMat = totalMaterials;
         }
         else
         {
@@ -193,5 +196,19 @@ public class ClickerEvent : MonoBehaviour
         {
             gameObject.SetActive(true);
         }
+    }
+    string FormatPrice(double value)
+    {
+        string[] suffixes = { "", " K", " M", " B", " T", " Qa", " Qi", " Sx", " Sp", " Oc", " No", " Dc", " Ud", " Dd", " Td", " Qad", " Qid", " Sxd", " Spd", " Ocd", " Nod" };
+
+        int suffixIndex = 0;
+
+        while (value >= 1000 && suffixIndex < suffixes.Length - 1)
+        {
+            value /= 1000;
+            suffixIndex++;
+        }
+
+        return value.ToString("F2") + suffixes[suffixIndex];
     }
 }
