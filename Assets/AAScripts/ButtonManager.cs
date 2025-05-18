@@ -25,6 +25,11 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenExitMenu()
     {
+        if (ExitMenu.activeInHierarchy)
+        {
+            ExitMenu.SetActive(false);
+            return;
+        }
         BossMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
@@ -34,6 +39,11 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenUpgradeMenu()
     {
+        if (UpgradeMenu.activeInHierarchy)
+        {
+            UpgradeMenu.SetActive(false);
+            return;
+        }
         BossMenu.SetActive(false);
         ExitMenu.SetActive(false);
         ConfigMenu.SetActive(false);
@@ -43,6 +53,11 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenConfigMenu()
     {
+        if (ConfigMenu.activeInHierarchy)
+        {
+            ConfigMenu.SetActive(false);
+            return;
+        }
         BossMenu.SetActive(false);
         ExitMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
@@ -52,6 +67,11 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenMatsMenu()
     {
+        if (MaterialMenu.activeInHierarchy)
+        {
+            MaterialMenu.SetActive(false);
+            return;
+        }
         ExitMenu.SetActive(false);
         BossMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
@@ -61,6 +81,11 @@ public class ButtonManager : MonoBehaviour
     }
     public void OpenBossMenu()
     {
+        if (BossMenu.activeInHierarchy)
+        {
+            BossMenu.SetActive(false);
+            return;
+        }
         ExitMenu.SetActive(false);
         UpgradeMenu.SetActive(false);
         ConfigMenu.SetActive(false);
