@@ -32,8 +32,13 @@ public class TutorialManager : MonoBehaviour
     [TextArea] public string TutUpDoorWrite;
     [TextArea] public string TutUpDoorWritetwo;
 
+    public GameObject PressAuto;
 
-    public float typingSpeed = 0.05f;
+    public GameObject BuyAuto;
+    public Text BuyAutotxt;
+    [TextArea] public string BuyAutoWrite;
+
+    public float typingSpeed = 0.03f;
     public GameObject UITutorial;
     private void OnEnable()
     {        
@@ -41,8 +46,9 @@ public class TutorialManager : MonoBehaviour
     }
     private IEnumerator TutoFirst()
     {
-        loretxt.text = ""; 
-        
+        loretxt.text = "...";
+        yield return new WaitForSeconds(2);
+        loretxt.text = "";
 
         foreach (char c in fullText)
         {
@@ -50,7 +56,7 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began));
 
         Cinematica.SetActive(false);
         PuertaClick.SetActive(true);
@@ -117,9 +123,18 @@ public class TutorialManager : MonoBehaviour
             TutUpDoortxt.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began));
         TutUpDoor.SetActive(false);
-        UITutorial.SetActive(false);
+        yield return new WaitUntil(() => inventory.Mat1 > 1000f && mainCam.activeInHierarchy);
+        PressAuto.SetActive(true);
+        yield return new WaitUntil(() => !PressAuto.activeInHierarchy);
+        BuyAuto.SetActive(true);
+        BuyAutotxt.text = "";
+        foreach (char c in BuyAutoWrite)
+        {
+            BuyAutotxt.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
     
     private bool IsPointerOverUIObject()

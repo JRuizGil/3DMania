@@ -463,7 +463,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: cb2a9ae1efa13744eb8eba5b7d50e17e, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f45c65ca5f440e4081eb00b9371aeeb, type: 3}
     m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 1
@@ -475,9 +475,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'RESOURCE OUTPUT:
-
-    X 32'
+  m_Text: X 32
 --- !u!1 &872028264272236009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,9 +2437,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.23137257, g: 0.24705884, b: 0.25490198, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
