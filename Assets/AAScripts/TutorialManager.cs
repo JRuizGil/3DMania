@@ -91,7 +91,7 @@ public class TutorialManager : MonoBehaviour
             DoorExplantxt.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(2f);
         yield return new WaitUntil(() => inventory.Mat1 > 4.1f);
         InDoorback.SetActive(false);
         //fuera de la puerta, sin el menu de mejora abierto
