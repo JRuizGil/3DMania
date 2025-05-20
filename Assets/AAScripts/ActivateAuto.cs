@@ -26,9 +26,11 @@ public class ActivateAuto : MonoBehaviour
         // Asegurarse de obtener el valor actualizado
         if (inventory.Mat1 >= ClickerEventData.AutomaterPrice) // Verifica si el jugador tiene suficiente dinero
         {
-            inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario
-            AutomaterPrefab.SetActive(true);  // Activa el automatizador
+            AutomaterPrefab.SetActive(true);
+            Debug.Log("Comprado");
+            inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario                                                       
             gameObject.SetActive(false); // Destruye el objeto después de la compra
+            
         }
         else
         {
