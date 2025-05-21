@@ -34496,7 +34496,7 @@ MonoBehaviour:
     \n\nTo get promoted, you must meet the minimum quota\u2026 by getting rid of
     your boss.                       \n\nBut first, you'll need the resources to
     make it happen...                           \n\nMission: Recruit 10 employees
-    to join the rebellion against your boss.                             Tap the
+    to join the rebellion against your boss.                         \n\nTap the
     screen to continue."
   PuertaClick: {fileID: 605793193}
   Clickdoortxt: {fileID: 281739871}
@@ -36243,7 +36243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 48.622314, y: -38.409058}
+  m_AnchoredPosition: {x: 48.62207, y: -38.409058}
   m_SizeDelta: {x: 97.2446, y: 76.818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1577059996
@@ -48978,7 +48978,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1523786860}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
