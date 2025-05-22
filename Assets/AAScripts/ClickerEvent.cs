@@ -87,10 +87,10 @@ public class ClickerEvent : MonoBehaviour
             clickCount++;
             SpawnText();
             MultiSlider.value = clickCount;
-            MultiText.text = $"{FormatPrice(TotMat)} BU <color=#FF0000> X {multiplier}</color>";
+            MultiText.text = $"{FormatPrice(TotMat)} BU <color=#FF0000> X {multiplier:F2}</color>";
             if (clickCount >= eventData.neededClicksToMultiply)
             {
-                multiplier *= 2;
+                multiplier *= 1.1f;
                 clickCount = 0;
             }
             if (Fantasma != null)
@@ -124,9 +124,9 @@ public class ClickerEvent : MonoBehaviour
         animator.SetBool("Open", true);
         audioSource.Play();
         gameActive = true;
-        timer = eventData.timerDuration;
-        timerSlider.maxValue = eventData.timerDuration;
-        timerSlider.value = eventData.timerDuration;
+        timer = upgradeButtonManager.timerduration;
+        timerSlider.maxValue = upgradeButtonManager.timerduration;
+        timerSlider.value = upgradeButtonManager.timerduration;
         timerSlider.gameObject.SetActive(true);
         clickCount = 0;
 
@@ -136,12 +136,13 @@ public class ClickerEvent : MonoBehaviour
         animator.SetBool("Open", false);
         audioSource.Play();
         gameActive = false;
-        multiplier = 1;
+        
         if (timer <= 0f)
         {
-            double totalMaterials = (multiplier * eventData.materialMultiplier) + upgradeButtonManager.actualearn;
+            double totalMaterials = (eventData.materialMultiplier) + upgradeButtonManager.actualearn * multiplier;
             inventory.AddMaterials(totalMaterials);
             TotMat = totalMaterials;
+            multiplier = 1;
         }
         else
         {

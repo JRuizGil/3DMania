@@ -6127,9 +6127,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!114 &306662389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21639,9 +21639,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!4 &973833650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 5cc345f83c1c34ef0940b7b0d21cdba2, type: 3}
@@ -24629,9 +24629,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!1 &1094209909
 GameObject:
   m_ObjectHideFlags: 0
@@ -32410,9 +32410,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!114 &1459041838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34966,7 +34966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542952482
 Transform:
   m_ObjectHideFlags: 0
@@ -35114,9 +35114,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!224 &1552097409
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37919,9 +37919,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!114 &1667588799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39848,7 +39848,6 @@ MonoBehaviour:
   - {fileID: 310510490}
   - {fileID: 491739899}
   - {fileID: 1542952481}
-  - {fileID: 1515583238}
 --- !u!82 &1754820644
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42559,9 +42558,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!114 &1850283257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48675,9 +48674,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!4 &2079532250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8801100159110119050, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
@@ -48866,9 +48865,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!1 &2084319444
 GameObject:
   m_ObjectHideFlags: 0
@@ -49951,9 +49950,9 @@ MonoBehaviour:
   actualearn: 0
   door: 0
   initialrevenue: 0
-  Cooldown: 0
   price: 0
   actualmultiplier: 0
+  timerduration: 0
 --- !u!1001 &2106968543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53231,8 +53230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
-  m_Bindings:
-  - {fileID: 3657599295758176273}
+  m_Bindings: []
   m_VisualEffect: {fileID: 3019831368352235780}
 --- !u!1 &8670972373507048838
 GameObject:
@@ -53784,7 +53782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022497125053487560, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5104471326308698520, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54129,6 +54127,7 @@ MonoBehaviour:
   clicksToFill: 80
   MainCamera: {fileID: 991618068}
   BossCamera: {fileID: 290013018}
+  BossCameraGameObject: {fileID: 0}
   BosscamAudiolist: {fileID: 290013019}
   Inventory: {fileID: 2046229112}
   FloorManager: {fileID: 1754820642}

@@ -15,5 +15,6 @@ public class ClickerEventData : ScriptableObject
     public GameObject AutoMatePrefab;
     public float AutomaterPrice;
     public float BossCountdownTime;
+    public float MinBaseTimerProduction = 0.5f;
 
 }

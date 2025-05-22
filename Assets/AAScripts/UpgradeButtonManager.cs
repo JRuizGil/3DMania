@@ -19,12 +19,13 @@ public class UpgradeButtonManager : MonoBehaviour
     [SerializeField] public double actualearn;
     [SerializeField] public float door;
     [SerializeField] public double initialrevenue;
-    [SerializeField] public float Cooldown;
     [SerializeField] private double price;
     [SerializeField] private float actualmultiplier;
+    [SerializeField] public float timerduration;
 
     private void Start()
     {
+        timerduration = ClickerEventData.timerDuration;
         lvl = 0;        
         door = ClickerEventData.door;
         initialrevenue = ClickerEventData.initialrevenue;
@@ -33,7 +34,7 @@ public class UpgradeButtonManager : MonoBehaviour
 
         Debug.Log("puerta " + ClickerEventData.door + "cuesta" + price + "ofrece" + actualearn);
 
-        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{ClickerEventData.timerDuration}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{timerduration:F2}s";
         FloorTxt.text = $"{ClickerEventData.door}º";
         price = ClickerEventData.price;
         btntext.text = $"{FormatPrice(price)} Bu";
@@ -56,17 +57,13 @@ public class UpgradeButtonManager : MonoBehaviour
                 Debug.LogWarning("No tienes suficiente dinero para comprar la mejora.");
             }
         }
-    }
-    private void Buyablebtn()
-    {
-        if (inventory.Mat1 > price)
-        {
-            button.interactable = true;
-        }
-    }
+    }    
     public void MultiplyPrice()
     {
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
+        timerduration = Mathf.Max(ClickerEventData.MinBaseTimerProduction, ClickerEventData.timerDuration / (1f + Mathf.Log(lvl + 1f))
+);
+
         if (btntext != null)
         {
             btntext.text = $"{FormatPrice(price)} Bu";
@@ -76,7 +73,7 @@ public class UpgradeButtonManager : MonoBehaviour
     {
         ChangeMultiplyEarn();
         actualearn = (initialrevenue * lvl) * actualmultiplier;
-        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{ClickerEventData.timerDuration}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{timerduration:F2}s";
     }
     public void ChangeMultiplyEarn()
     {
@@ -138,11 +135,11 @@ public class UpgradeButtonManager : MonoBehaviour
         door = ClickerEventData.door;
         initialrevenue = ClickerEventData.initialrevenue;
         actualearn = initialrevenue;
-        Cooldown = ClickerEventData.timerDuration;
+        timerduration = 1f;
         price = ClickerEventData.price;
 
         // Reinicia la UI
-        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{Cooldown}s";
+        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{timerduration:F2}s";
         FloorTxt.text = $"{door}º";
         btntext.text = $"{FormatPrice(price)} Bu";
 

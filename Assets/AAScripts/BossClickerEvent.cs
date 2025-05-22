@@ -36,6 +36,7 @@ public class BossClickerEvent : MonoBehaviour
 
     public Camera MainCamera;
     public Camera BossCamera;
+    public GameObject BossCameraGameObject;
     public AudioListener BosscamAudiolist;
     public Inventory Inventory;
     public FloorManager FloorManager;
@@ -152,8 +153,19 @@ public class BossClickerEvent : MonoBehaviour
         }
         else
         {
-            EndingCinematic();           
-
+            // Luego de la cinemática
+            BossScene.SetActive(false);
+            ResetClickerEvent();
+            Inventory.Mat1 = 4f;
+            clickSlider.maxValue = +20;
+            FloorManager.FloorDown();
+            StartManager.StartUnable();
+            StartManager.StartEnable();
+            foreach (UpgradeButtonManager button in UpgradeButtonManager)
+            {
+                if (button != null)
+                    button.ResetAll();
+            }
         }
     }
     private void MoveToStage(int stage)
@@ -212,38 +224,5 @@ public class BossClickerEvent : MonoBehaviour
         effect.SetFloat("AtractionStrength", 1f);
         effect.SetFloat("Rate", 100f);
     }
-    private IEnumerator EndingCinematic()
-    {
-        Vector3 startPos = BossCamera.transform.position;
-        Vector3 targetPos = MainCamStartPos.transform.position; //  acceso correcto
-
-        float duration = 5f;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            float t = elapsed / duration;
-            BossCamera.transform.position = Vector3.Lerp(startPos, targetPos, t);
-            elapsed += Time.deltaTime;
-        }
-
-        // Asegurarse que termine justo en la posición final
-        BossCamera.transform.position = targetPos;
-
-        // Luego de la cinemática
-        BossScene.SetActive(false);
-        ResetClickerEvent();
-        Inventory.Mat1 = 4f;
-        clickSlider.maxValue = +20;
-        FloorManager.FloorDown();
-        StartManager.StartUnable();
-        StartManager.StartEnable();
-        foreach (UpgradeButtonManager button in UpgradeButtonManager)
-        {
-            if (button != null)
-                button.ResetAll();
-        }
-        yield break;
-    }
-
+    
 }

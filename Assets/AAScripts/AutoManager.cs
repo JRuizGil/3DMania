@@ -7,6 +7,7 @@ public class AutoManager : MonoBehaviour
     public UpgradeButtonManager upgradeButtonManager;
     public Inventory Inventory;
     public ClickerEventData ClickerEventData;
+    private float timerduration;
     public Animator animator;
     private double actualearn;
 
@@ -17,10 +18,11 @@ public class AutoManager : MonoBehaviour
     private void FixedUpdate()
     {
         actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
+        timerduration = upgradeButtonManager.timerduration;
     }
     private void Start()
-    {       
-               
+    {
+        timerduration = ClickerEventData.timerDuration;
         StartCoroutine(AutoLoop());
     }
 
@@ -36,7 +38,7 @@ public class AutoManager : MonoBehaviour
     private IEnumerator AutomatizarCoroutine()
     {        
         animator.SetBool("Open", true);
-        yield return new WaitForSeconds(ClickerEventData.timerDuration);
+        yield return new WaitForSeconds(timerduration);
 
         double totalMaterials = (double)System.Math.Round(actualearn); // sin casteo a float
         Inventory.AddMaterials(totalMaterials);
