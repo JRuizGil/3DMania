@@ -34411,7 +34411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1515583239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53230,7 +53230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
-  m_Bindings: []
+  m_Bindings:
+  - {fileID: 3657599295758176273}
   m_VisualEffect: {fileID: 3019831368352235780}
 --- !u!1 &8670972373507048838
 GameObject:
