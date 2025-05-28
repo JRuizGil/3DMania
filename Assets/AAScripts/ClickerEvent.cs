@@ -61,8 +61,9 @@ public class ClickerEvent : MonoBehaviour
     }
     private void Update()
     {
-        UpdateMain();        
+        UpdateMain();
     }
+    
     private void UpdateMain()
     {
         bool isPrefabCameraActive = prefabCamera != null && prefabCamera.gameObject.activeSelf;
@@ -88,9 +89,9 @@ public class ClickerEvent : MonoBehaviour
             SpawnText();
             MultiSlider.value = clickCount;
             MultiText.text = $"{FormatPrice(TotMat)} BU <color=#FF0000> X {multiplier:F2}</color>";
-            if (clickCount >= eventData.neededClicksToMultiply)
+            if (clickCount >= MultiSlider.maxValue)
             {
-                multiplier *= 1.1f;
+                multiplier *= 1.07f;
                 clickCount = 0;
             }
             if (Fantasma != null)
@@ -129,7 +130,6 @@ public class ClickerEvent : MonoBehaviour
         timerSlider.value = upgradeButtonManager.timerduration;
         timerSlider.gameObject.SetActive(true);
         clickCount = 0;
-
     }
     public void EndGame()
     {

@@ -7,6 +7,7 @@ public class UpgradeButtonManager : MonoBehaviour
 {
     public Inventory inventory;
     public ClickerEventData ClickerEventData;
+    public ClickerEvent ClickerEventMain;
     public Button button;
     public Text btntext;
     public Text txt;
@@ -61,8 +62,11 @@ public class UpgradeButtonManager : MonoBehaviour
     public void MultiplyPrice()
     {
         price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
-        timerduration = Mathf.Max(ClickerEventData.MinBaseTimerProduction, ClickerEventData.timerDuration / (1f + Mathf.Log(lvl + 1f))
-);
+        timerduration = Mathf.Max(ClickerEventData.MinBaseTimerProduction, ClickerEventData.timerDuration / (1f + Mathf.Log(lvl + 1f)));
+        float timerScale = 1f + Mathf.Log(lvl + 1f); 
+        int scaledClicks = Mathf.RoundToInt(ClickerEventData.neededClicksToMultiply / timerScale);
+        ClickerEventMain.MultiSlider.maxValue = Mathf.Max(3, scaledClicks); 
+
 
         if (btntext != null)
         {

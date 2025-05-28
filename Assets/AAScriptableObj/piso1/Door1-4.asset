@@ -24,6 +24,4 @@ MonoBehaviour:
   AutoMatePrefab: {fileID: 1951403710248533573, guid: 043b17d045e68854f8b0484bf24f3745, type: 3}
   AutomaterPrice: 1000000
   BossCountdownTime: 0
-  HaveToEarn: 0
-  BossEarnMultiplier: 0
-  BossEnterPrice: 0
+  MinBaseTimerProduction: 1

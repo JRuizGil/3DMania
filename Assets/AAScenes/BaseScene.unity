@@ -6116,6 +6116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 410d17d23d8188c4a996966155bd11f5, type: 2}
+  ClickerEventMain: {fileID: 1335866963}
   button: {fileID: 306662389}
   btntext: {fileID: 381282094}
   txt: {fileID: 1526709125}
@@ -21628,6 +21629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 3b85e7fb2c50d094e8f597f1e3db708c, type: 2}
+  ClickerEventMain: {fileID: 2119434994}
   button: {fileID: 968395584}
   btntext: {fileID: 650660020}
   txt: {fileID: 582145439}
@@ -24618,6 +24620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: fa67ce286f25f5b41826a4dc9bc11747, type: 2}
+  ClickerEventMain: {fileID: 2012064980}
   button: {fileID: 1089955908}
   btntext: {fileID: 1077879995}
   txt: {fileID: 772121049}
@@ -32399,6 +32402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: c8169e237f153af4d964e11105feef90, type: 2}
+  ClickerEventMain: {fileID: 1013728607}
   button: {fileID: 1459041838}
   btntext: {fileID: 1635609288}
   txt: {fileID: 1883203240}
@@ -34411,7 +34415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1515583239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35103,6 +35107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 3477650233398054388e99afbd37abca, type: 2}
+  ClickerEventMain: {fileID: 1818678144}
   button: {fileID: 1552097410}
   btntext: {fileID: 1389168329}
   txt: {fileID: 100061825}
@@ -37908,6 +37913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 35d94e0aada9fd2468a683a2cdcf139f, type: 2}
+  ClickerEventMain: {fileID: 1198051513}
   button: {fileID: 1667588799}
   btntext: {fileID: 1629269199}
   txt: {fileID: 754462532}
@@ -42547,6 +42553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 6a0e4c6605ca62a49ba26a629b7d61ce, type: 2}
+  ClickerEventMain: {fileID: 1489507322}
   button: {fileID: 1850283257}
   btntext: {fileID: 932189617}
   txt: {fileID: 1182390807}
@@ -48663,6 +48670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: cb5ee152530023a439cc8b7aba265d73, type: 2}
+  ClickerEventMain: {fileID: 8964592133021353302}
   button: {fileID: 2077599591}
   btntext: {fileID: 1800798}
   txt: {fileID: 304888481}
@@ -48854,6 +48862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 04cad632e6455e14698b5eb2c687f889, type: 2}
+  ClickerEventMain: {fileID: 1542336391}
   button: {fileID: 2083491058}
   btntext: {fileID: 918644222}
   txt: {fileID: 38165763}
@@ -49939,6 +49948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2046229112}
   ClickerEventData: {fileID: 11400000, guid: 83419e27805e4f34880f2ab739cafd8a, type: 2}
+  ClickerEventMain: {fileID: 1717755813}
   button: {fileID: 2104250479}
   btntext: {fileID: 1318394257}
   txt: {fileID: 1007624468}
@@ -54070,6 +54080,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4634500059250894929}
   m_SourcePrefab: {fileID: 100100000, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+--- !u!114 &8964592133021353302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9172302753349154066, guid: 0ae7b3b42a69bd7418b0f6b8f855b494, type: 3}
+  m_PrefabInstance: {fileID: 8964592133021353301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655354690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac74607d2045fb43b03ef9fe08e25bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9040375590295079190
 GameObject:
   m_ObjectHideFlags: 0
