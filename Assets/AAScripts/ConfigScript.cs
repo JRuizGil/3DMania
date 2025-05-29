@@ -69,7 +69,6 @@ public class ConfigScript : MonoBehaviour
             SetMusicVolume(musicSlider.value);
             SetSFXVolume(sfxSlider.value);
         }
-
         PlayerPrefs.SetInt("Muted", isMuted ? 1 : 0);
     }
 }

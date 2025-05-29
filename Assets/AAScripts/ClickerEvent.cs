@@ -193,7 +193,7 @@ public class ClickerEvent : MonoBehaviour
     }
     public void ActivateDoor()
     {
-        if (!gameObject.activeSelf && upgradeButtonManager.lvl == 1)
+        if (!gameObject.activeSelf && upgradeButtonManager.lvl >= 1)
         {
             gameObject.SetActive(true);
         }

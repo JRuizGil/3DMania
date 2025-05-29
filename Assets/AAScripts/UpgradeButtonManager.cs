@@ -21,7 +21,7 @@ public class UpgradeButtonManager : MonoBehaviour
     [SerializeField] public float door;
     [SerializeField] public double initialrevenue;
     [SerializeField] private double price;
-    [SerializeField] private float actualmultiplier;
+    [SerializeField] public float actualmultiplier;
     [SerializeField] public float timerduration;
 
     private void Start()
@@ -32,7 +32,6 @@ public class UpgradeButtonManager : MonoBehaviour
         initialrevenue = ClickerEventData.initialrevenue;
         button.enabled = true;
         actualearn = ClickerEventData.initialrevenue;
-
         Debug.Log("puerta " + ClickerEventData.door + "cuesta" + price + "ofrece" + actualearn);
 
         txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{timerduration:F2}s";
@@ -134,28 +133,14 @@ public class UpgradeButtonManager : MonoBehaviour
     }
     public void ResetAll()
     {
-        lvl = 0;
-        actualmultiplier = 1;
-        door = ClickerEventData.door;
-        initialrevenue = ClickerEventData.initialrevenue;
-        actualearn = initialrevenue;
-        timerduration = 1f;
-        price = ClickerEventData.price;
-
+        //lvl = 0;
+        //actualmultiplier = 1;
+        //initialrevenue = ClickerEventData.initialrevenue;
+        //actualearn = initialrevenue;
+        //timerduration = ClickerEventData.timerDuration;        
         // Reinicia la UI
-        txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{timerduration:F2}s";
-        FloorTxt.text = $"{door}º";
-        btntext.text = $"{FormatPrice(price)} Bu";
-
-        // Reactiva el botón de mejora
-        button.interactable = true;
-
-        // Opcional: desactiva elementos visuales si fue activado en otro punto
-        nextCamPos.SetActive(false);
-        uparrow.interactable = false;
-        downarrow.interactable = false;
-
-        Debug.Log("Se ha hecho reset de todas las variables.");
+        txt.text = $"DOOR LEVEL:{ClickerEventData.lvl} \nEarn:{FormatPrice(actualearn)}   Cooldown:{timerduration:F2}s";
+        btntext.text = $"{FormatPrice(ClickerEventData.price)} Bu";  
     }
 
 }

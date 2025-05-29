@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
 using Unity.VisualScripting;
+using static System.Net.Mime.MediaTypeNames;
 
 public class BossClickerEvent : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class BossClickerEvent : MonoBehaviour
     public GameObject BossScene;
 
     private Transform[] bossPositions;
+    public Animator[] Dooranim;
 
     public GameObject MainCamStartPos;
     private void Start()
@@ -155,17 +157,21 @@ public class BossClickerEvent : MonoBehaviour
         {
             // Luego de la cinemática
             BossScene.SetActive(false);
-            ResetClickerEvent();
             Inventory.Mat1 = 4f;
             clickSlider.maxValue = +20;
+            foreach (UpgradeButtonManager button in UpgradeButtonManager)
+            {
+                button.lvl = 0;
+                button.actualmultiplier = 1;
+                button.initialrevenue = button.ClickerEventData.initialrevenue;
+                button.actualearn = button.initialrevenue;
+                button.timerduration = button.ClickerEventData.timerDuration;
+                button.ResetAll();
+            }            
             FloorManager.FloorDown();
             StartManager.StartUnable();
             StartManager.StartEnable();
-            foreach (UpgradeButtonManager button in UpgradeButtonManager)
-            {
-                if (button != null)
-                    button.ResetAll();
-            }
+            MainCamera.gameObject.SetActive(true);
         }
     }
     private void MoveToStage(int stage)

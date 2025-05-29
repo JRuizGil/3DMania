@@ -19,14 +19,14 @@ public class AutoManager : MonoBehaviour
     {
         actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
         timerduration = upgradeButtonManager.timerduration;
-    }
-    private void Start()
+    }    
+    private void OnEnable()
     {
         timerduration = ClickerEventData.timerDuration;
         StartCoroutine(AutoLoop());
     }
-
-    private IEnumerator AutoLoop()
+    
+    public IEnumerator AutoLoop()
     {
         yield return new WaitForSeconds(0.5f); // Pequeño delay inicial
         while (true)
@@ -35,7 +35,7 @@ public class AutoManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // Espera entre automatizaciones
         }
     }
-    private IEnumerator AutomatizarCoroutine()
+    public IEnumerator AutomatizarCoroutine()
     {        
         animator.SetBool("Open", true);
         yield return new WaitForSeconds(timerduration);
