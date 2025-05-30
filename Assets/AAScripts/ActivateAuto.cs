@@ -7,20 +7,26 @@ public class ActivateAuto : MonoBehaviour
     public ClickerEventData ClickerEventData;
     private Text text;
     public Inventory inventory;
+    private double Autoprice;
     private void Awake()
     {
+        Autoprice = ClickerEventData.AutomaterPrice;
         text = GetComponentInChildren<Text>();
 
         if (text != null)
         {
-            text.text = $"{ClickerEventData.door}\n{FormatNumber(ClickerEventData.AutomaterPrice)} Bu";
+            text.text = $"{ClickerEventData.door}\n{FormatNumber(Autoprice)} Bu";
         }
         else
         {
             Debug.LogWarning("No se encontró un componente Text en los hijos de este objeto.");
         }
-    }    
-
+    }
+    private void OnDisable()
+    {
+        Autoprice *= 1.1f;
+        text.text = $"{ClickerEventData.door}\n{FormatNumber(Autoprice)} Bu";
+    }
     public void BuyAutomater()
     {
         // Asegurarse de obtener el valor actualizado
@@ -30,7 +36,6 @@ public class ActivateAuto : MonoBehaviour
             Debug.Log("Comprado");
             inventory.Mat1 -= ClickerEventData.AutomaterPrice; // Resta el dinero del inventario                                                       
             gameObject.SetActive(false); // Destruye el objeto después de la compra
-            
         }
         else
         {

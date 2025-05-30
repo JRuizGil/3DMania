@@ -15,6 +15,7 @@ public class UpgradeButtonManager : MonoBehaviour
     public GameObject nextCamPos;
     public Button uparrow;
     public Button downarrow;
+    public float increaseddiffmultiplier = 1f;
 
     [SerializeField] public float lvl;
     [SerializeField] public double actualearn;
@@ -26,6 +27,7 @@ public class UpgradeButtonManager : MonoBehaviour
 
     private void Start()
     {
+        increaseddiffmultiplier = 1f;
         timerduration = ClickerEventData.timerDuration;
         lvl = 0;        
         door = ClickerEventData.door;
@@ -60,7 +62,7 @@ public class UpgradeButtonManager : MonoBehaviour
     }    
     public void MultiplyPrice()
     {
-        price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier, lvl);
+        price = ClickerEventData.price * Mathf.Pow(ClickerEventData.materialMultiplier * increaseddiffmultiplier, lvl);
         timerduration = Mathf.Max(ClickerEventData.MinBaseTimerProduction, ClickerEventData.timerDuration / (1f + Mathf.Log(lvl + 1f)));
         float timerScale = 1f + Mathf.Log(lvl + 1f); 
         int scaledClicks = Mathf.RoundToInt(ClickerEventData.neededClicksToMultiply / timerScale);
@@ -75,7 +77,7 @@ public class UpgradeButtonManager : MonoBehaviour
     public void SumEarnings()
     {
         ChangeMultiplyEarn();
-        actualearn = (initialrevenue * lvl) * actualmultiplier;
+        actualearn = ((initialrevenue * lvl) * actualmultiplier);
         txt.text = $"DOOR LEVEL:{lvl} \nEarn:{FormatPrice(actualearn)}  Cooldown:{timerduration:F2}s";
     }
     public void ChangeMultiplyEarn()

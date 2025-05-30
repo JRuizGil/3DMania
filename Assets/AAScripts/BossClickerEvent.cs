@@ -47,11 +47,11 @@ public class BossClickerEvent : MonoBehaviour
 
     public GameObject GameHud;
     public GameObject BossScene;
+    public GameObject Restartscene;
 
     private Transform[] bossPositions;
-    public Animator[] Dooranim;
+    public AudioSource lasersoundSound;
 
-    public GameObject MainCamStartPos;
     private void Start()
     {
         escalaOriginal = gameObject.transform.localScale;
@@ -89,6 +89,7 @@ public class BossClickerEvent : MonoBehaviour
         isClickerActive = true;
 
         BosscamAudiolist.enabled = true;
+        
     }
     private void FixedUpdate()
     {
@@ -162,6 +163,7 @@ public class BossClickerEvent : MonoBehaviour
             foreach (UpgradeButtonManager button in UpgradeButtonManager)
             {
                 button.lvl = 0;
+                button.increaseddiffmultiplier *= 1.1f;
                 button.actualmultiplier = 1;
                 button.initialrevenue = button.ClickerEventData.initialrevenue;
                 button.actualearn = button.initialrevenue;
@@ -172,6 +174,7 @@ public class BossClickerEvent : MonoBehaviour
             StartManager.StartUnable();
             StartManager.StartEnable();
             MainCamera.gameObject.SetActive(true);
+            Restartscene.SetActive(true);
         }
     }
     private void MoveToStage(int stage)
@@ -196,7 +199,8 @@ public class BossClickerEvent : MonoBehaviour
         currentTime = totalTime;
         isClickerActive = false;
         MainCamera.gameObject.SetActive(true);
-        GameHud.gameObject.SetActive(true);        
+        GameHud.gameObject.SetActive(true);  
+        BossScene.gameObject.SetActive(false);
     }
     public void TriggerAtractionBoost()
     {     
@@ -216,6 +220,7 @@ public class BossClickerEvent : MonoBehaviour
         effect.SetFloat("AtractionStrength", 1000f);
         effect.SetFloat("Radius", 0.1f);
         effect.SetFloat("Rate", 100000f);
+        lasersoundSound.Play();
         yield return new WaitForSeconds(0.5f);
 
         // Volver a la posición original

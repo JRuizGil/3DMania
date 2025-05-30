@@ -8,16 +8,14 @@ public class ConfigScript : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider musicSlider;
     public Slider sfxSlider;
-    public Toggle muteToggle;
 
     private bool isMuted = false;
 
     private void Start()
     {
         // Cargar valores guardados
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 75f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 75f);
-        isMuted = PlayerPrefs.GetInt("Muted", 0) == 1;
+        musicSlider.value = PlayerPrefs.GetFloat("Music", 5f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFX", 5f);
 
         // Aplicar valores iniciales
         UpdateMuteState();
@@ -26,34 +24,30 @@ public class ConfigScript : MonoBehaviour
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 
-        // Registrar evento del toggle (opcional si ya se conecta por el Inspector)
-        muteToggle.isOn = isMuted;
-        muteToggle.onValueChanged.AddListener(delegate { ToggleMute(); });
     }
 
     public void SetMusicVolume(float volume)
     {
         if (!isMuted)
         {
-            audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+            audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
         }
 
-        PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.SetFloat("Music", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         if (!isMuted)
         {
-            audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+            audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
         }
 
-        PlayerPrefs.SetFloat("SFXVolume", volume);
+        PlayerPrefs.SetFloat("SFX", volume);
     }
 
     public void ToggleMute()
-    {
-        isMuted = muteToggle.isOn;
+    {        
         UpdateMuteState();
     }
 
@@ -61,8 +55,8 @@ public class ConfigScript : MonoBehaviour
     {
         if (isMuted)
         {
-            audioMixer.SetFloat("MusicVolume", -80);
-            audioMixer.SetFloat("SFXVolume", -80);
+            audioMixer.SetFloat("Music", -80);
+            audioMixer.SetFloat("SFX", -80);
         }
         else
         {

@@ -18,7 +18,7 @@ MonoBehaviour:
   m_PlatformId: b9b35072a6f44c2e863f17467ea3dc13
   m_PlatformBuildProfile:
     rid: 1484945602723184730
-  m_OverrideGlobalSceneList: 0
+  m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
     m_path: Assets/AAScenes/BaseScene.unity
@@ -68,7 +68,8 @@ MonoBehaviour:
     - line: '|   - logo: {fileID: 21300000, guid: 612cbbcb6645e16489cc0a9247ac9b27,
         type: 3}'
     - line: '|     duration: 2'
-    - line: '|   m_VirtualRealitySplashScreen: {instanceID: 0}'
+    - line: '|   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 667852998eabb374a841f84cb2c32ada,
+        type: 3}'
     - line: '|   m_HolographicTrackingLossScreen: {instanceID: 0}'
     - line: '|   defaultScreenWidth: 1024'
     - line: '|   defaultScreenHeight: 768'
@@ -92,15 +93,15 @@ MonoBehaviour:
     - line: '|   allowedAutorotateToLandscapeRight: 1'
     - line: '|   allowedAutorotateToLandscapeLeft: 1'
     - line: '|   useOSAutorotation: 1'
-    - line: '|   use32BitDisplayBuffer: 1'
-    - line: '|   preserveFramebufferAlpha: 0'
+    - line: '|   use32BitDisplayBuffer: 0'
+    - line: '|   preserveFramebufferAlpha: 1'
     - line: '|   disableDepthAndStencilBuffers: 0'
     - line: '|   androidStartInFullscreen: 0'
     - line: '|   androidRenderOutsideSafeArea: 0'
     - line: '|   androidUseSwappy: 1'
     - line: '|   androidBlitType: 0'
-    - line: '|   androidResizeableActivity: 1'
-    - line: '|   androidDefaultWindowWidth: 2160'
+    - line: '|   androidResizeableActivity: 0'
+    - line: '|   androidDefaultWindowWidth: 1920'
     - line: '|   androidDefaultWindowHeight: 1080'
     - line: '|   androidMinimumWindowWidth: 1920'
     - line: '|   androidMinimumWindowHeight: 1080'
@@ -168,7 +169,7 @@ MonoBehaviour:
     - line: '|   loadStoreDebugModeEnabled: 0'
     - line: '|   visionOSBundleVersion: 1.0'
     - line: '|   tvOSBundleVersion: 1.0'
-    - line: '|   bundleVersion: 0.9'
+    - line: '|   bundleVersion: 1'
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: -944628639613478452, guid: b2e4df0d355c04748bc47c819bc1932e,
         type: 3}'
@@ -322,7 +323,7 @@ MonoBehaviour:
     - line: '|   - m_BuildTarget: '
     - line: '|     m_Icons:'
     - line: '|     - serializedVersion: 2'
-    - line: '|       m_Icon: {fileID: 2800000, guid: 612cbbcb6645e16489cc0a9247ac9b27,
+    - line: '|       m_Icon: {fileID: 2800000, guid: 667852998eabb374a841f84cb2c32ada,
         type: 3}'
     - line: '|       m_Width: 128'
     - line: '|       m_Height: 128'
@@ -566,7 +567,7 @@ MonoBehaviour:
     - line: '|   - m_BuildTarget: Android'
     - line: '|     m_ChunkSizeInMB: 32'
     - line: '|     m_MaxChunks: 4'
-    - line: '|     m_OverrideDefaultSettings: 1'
+    - line: '|     m_OverrideDefaultSettings: 0'
     - line: '|   m_BuildTargetGraphicsJobs: []'
     - line: '|   m_BuildTargetGraphicsJobMode: []'
     - line: '|   m_BuildTargetGraphicsAPIs:'
@@ -590,7 +591,7 @@ MonoBehaviour:
     - line: '|   m_BuildTargetGroupLightmapEncodingQuality:'
     - line: '|   - serializedVersion: 2'
     - line: '|     m_BuildTarget: Android'
-    - line: '|     m_EncodingQuality: 0'
+    - line: '|     m_EncodingQuality: 1'
     - line: '|   m_BuildTargetGroupLightmapSettings: []'
     - line: '|   m_BuildTargetGroupLoadStoreDebugModeSettings: []'
     - line: '|   m_BuildTargetNormalMapEncoding:'
@@ -833,7 +834,8 @@ MonoBehaviour:
     - line: '|   ps4IncludedModules: []'
     - line: '|   ps4attribVROutputEnabled: 0'
     - line: '|   monoEnv: '
-    - line: '|   splashScreenBackgroundSourceLandscape: {instanceID: 0}'
+    - line: '|   splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid:
+        6d198a38c338b234cb3eb76ce5a63655, type: 3}'
     - line: '|   splashScreenBackgroundSourcePortrait: {instanceID: 0}'
     - line: '|   blurSplashScreenBackground: 1'
     - line: '|   spritePackerPolicy: '
@@ -1015,7 +1017,7 @@ MonoBehaviour:
         m_ExportAsGoogleAndroidProject: 0
         m_DebugSymbolLevel: 1
         m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: XOHAX8MNU8DY7X4X
+        m_CurrentDeploymentTargetId: __builtin__target_default
         m_BuildType: 2
         m_BuildAppBundle: 0
         m_IPAddressToConnect: 

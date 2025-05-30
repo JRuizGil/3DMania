@@ -10,6 +10,8 @@ public class AutoManager : MonoBehaviour
     private float timerduration;
     public Animator animator;
     private double actualearn;
+    private Coroutine autoLoopCoroutine; // Variable para guardar la corrutina
+
 
     private void Awake()
     {
@@ -19,13 +21,16 @@ public class AutoManager : MonoBehaviour
     {
         actualearn = upgradeButtonManager.actualearn; // Actualiza cps en cada frame
         timerduration = upgradeButtonManager.timerduration;
-    }    
+    }
     private void OnEnable()
     {
         timerduration = ClickerEventData.timerDuration;
-        StartCoroutine(AutoLoop());
+        autoLoopCoroutine = StartCoroutine(AutoLoop()); // Guardar referencia
     }
-    
+    private void OnDisable()
+    {
+        DetenerAutoLoop();
+    }
     public IEnumerator AutoLoop()
     {
         yield return new WaitForSeconds(0.5f); // Pequeño delay inicial
@@ -44,5 +49,14 @@ public class AutoManager : MonoBehaviour
         Inventory.AddMaterials(totalMaterials);
 
         animator.SetBool("Open", false);
+    }
+    public void DetenerAutoLoop()
+    {
+        if (autoLoopCoroutine != null)
+        {
+            StopCoroutine(autoLoopCoroutine);
+            autoLoopCoroutine = null;
+            animator.SetBool("Open", false); // Por si se quedó abierto
+        }
     }
 }

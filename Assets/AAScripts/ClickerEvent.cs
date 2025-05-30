@@ -34,6 +34,7 @@ public class ClickerEvent : MonoBehaviour
 
     private Vector3 escalaOriginal;
     private Canvas canvas;
+    
     private void Start()
     {
         canvas = GetComponentInChildren<Canvas>();
